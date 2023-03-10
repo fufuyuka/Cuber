@@ -39,5 +39,4 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     resources :users, only: [:index, :show, :edit, :update]
     resources :searches, only: [:index]
   end
-  
 end
