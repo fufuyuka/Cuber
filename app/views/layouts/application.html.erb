@@ -24,21 +24,6 @@
           <div>
           　<p>検索ボックス予定地</p>
           </div>
-          <!--ヘッダー見出し-->
-          <ul class='nav navbar-nav m-auto'>
-            <li>
-              <%= link_to "TOP", admin_contucts_path, class:'nav-link text-dark' %>
-            </li>
-            <li>
-              <%= link_to "ユーザー一覧", admin_users_path, class:'nav-link text-dark' %>
-            </li>
-            <li>
-              <%= link_to "検索", admin_searches_path, class:'nav-link text-dark' %>
-            </li>
-            <li>
-              <%= link_to "ログアウト", destroy_admin_session_path, class:'nav-link text-dark' %>
-            </li>
-          </ul>
         </div>
       </nav>
 
@@ -110,15 +95,15 @@
       <% if user_signed_in? %>
       <div class='bg-light pt-4 pb-2 text-dark text-center'>
         <p>
-          <%= link_to "お問い合わせ　", contacts_create_path %>
+          <%= link_to "お問い合わせ　", contacts_new_path %>
           <%= link_to "利用規約　", terms_path %>
           <%= link_to "運営", management_path %>
         </p>
-      </div>>
+      </div>
       <% else %>
       <div class='bg-light p-5 text-dark text-center'>
         <p>
-          <%= link_to "お問い合わせ　", contacts_create_path %>
+          <%= link_to "お問い合わせ　", contacts_new_path %>
           <%= link_to "利用規約　", terms_path %>
           <%= link_to "運営", management_path %>
         </p>
