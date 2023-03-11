@@ -3,6 +3,7 @@ class Public::FavoritesController < ApplicationController
   end
   
   def index
+    @user = current_user
   end
   
   def destroy

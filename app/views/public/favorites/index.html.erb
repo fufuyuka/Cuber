@@ -1,2 +1,27 @@
-<h1>Public::Favorites#index</h1>
-<p>Find me in app/views/public/favorites/index.html.erb</p>
+<div class='container px-5'>
+  <div class='row'>
+    <!--user-info-->
+    <div class='col-3 text-center my-5'>
+      <%= image_tag @user.get_profile_image, size:'100x100' %>
+      <p>貰ったいいね数</p>
+      <p class='pb-3 border-bottom'>💗 <%#= いいね合計数 %></p>
+      <%= link_to "マイページ", user_my_page_path, class:'text-dark' %><br>
+      <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
+      <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
+      <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
+    </div>
+    
+    <!--user詳細-->
+    <div class='col-8 offset-1 py-5'>
+      <h4><%= @user.name %><%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %></h4>
+      <p class='mb-5'><%= @user.profiles %></p>
+    
+      <!--userいいね一覧-->
+      <div>
+        <p>いいねを最後に押した順に表示</p>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>

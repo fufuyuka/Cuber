@@ -20,9 +20,11 @@ devise_for :users,skip: [:passwords], controllers: {
       get "/withdrawal" => "settings#withdrawal"
       resource :settings, only: [:edit,:update]
     end
+    get "/favorites" => "favorites#index"
+    get "/bookmarks" => "bookmarks#index"
     resources :posts, only: [:create,:show,:index,:destroy] do
-      resource :favorites, only: [:create,:index,:destroy]
-      resource :bookmarks, only: [:create,:index,:destroy]
+      resource :favorites, only: [:create,:destroy]
+      resource :bookmarks, only: [:create,:destroy]
       resources :post_comments, only: [:create,:index,:destroy]
     end
     get "/searches" => "searches#index"

@@ -1,4 +1,53 @@
-<h1>Public::User::Settings#edit</h1>
-<p>Find me in app/views/public/user/settings/edit.html.erb</p>
-
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<div class='container px-5'>
+  <div class='row'>
+    <!--user-info-->
+    <div class='col-3 text-center my-5'>
+      <%= image_tag @user.get_profile_image, size:'100x100' %>
+      <p>貰ったいいね数</p>
+      <p class='pb-3 border-bottom'>💗 <%#= いいね合計数 %></p>
+      <%= link_to "マイページ", user_my_page_path, class:'text-dark' %><br>
+      <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
+      <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
+      <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
+    </div>
+    
+    <!--user詳細-->
+    <div class='col-8 offset-1 py-5'>
+      
+      <div class='my-5'>
+        <h4>設定※パスワードの照合とかまだ</h4>
+        <%= form_with model: @user, url: user_settings_path, method: :patch, local:true do |f| %>
+        <div class='row justify-content-center'>
+          <table class="table table-borderless">
+            <tr>
+              <td><%= f.label :メールアドレス %></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :現在のパスワード %></td>
+              <td><%= f.password_field :password, autocomplete: "now-password" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :パスワード %></td>
+              <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :"パスワード(確認用)" %></td>
+              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+            </tr>
+          </table>
+          <%= f.submit "更新", class:'btn btn-success px-5 mb-2' %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class='text-center'>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'btn btn-outline-secondary mb-5' %>
+        <p>一度退会すると、このアカウントは使用できなくなります。</p>
+        <%= link_to "退会する", destroy_user_session_path, method: :delete, class:'btn btn-outline-danger' %>
+      </div>
+    
+    </div>
+    
+  </div>
+</div>
