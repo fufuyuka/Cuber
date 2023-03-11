@@ -18,7 +18,9 @@
       <!--ユーザーがログインしているとき-->
       <% if user_signed_in? %>
       <nav class='navbar navbar-expand-md bg-light'>
-        <%= image_tag 'Cuber_logo.png', size:'60x60' %>
+        <%= link_to user_my_page_path, class:'nav-link' do %>
+          <%= image_tag 'Cuber_logo.png', size:'65x65' %>
+        <% end %>
         <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5'>
           <!--検索フォーム-->
           <div>
@@ -53,7 +55,9 @@
       <!--ログインしていないとき-->
       <% else %>
       <nav class='navbar navbar-expand-md bg-light'>
+          <%= link_to root_path, class:'nav-link' do %>
           <%= image_tag 'Cuber_logo.png', size:'100x100' %>
+        <% end %>
   
           <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5'>
             <!--検索フォーム-->

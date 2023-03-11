@@ -1,2 +1,8 @@
-ログアウト完了画面
-
+<div class='container my-5'>
+  <div class='row text-center flex-column py-5'>
+    <h4>ログアウトしました。</h4>
+    <%= link_to "Cuber TOPページへ", root_path, class:'my-5' %>
+    <p class='py-4  border-top'>再度ログインの際はこちらから</p>
+    <%= link_to "ログイン", new_user_session_path %>
+  </div>
+</div>
