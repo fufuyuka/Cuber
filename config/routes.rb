@@ -17,7 +17,8 @@ devise_for :users,skip: [:passwords], controllers: {
       get "/my_page" => "profiles#show"
       resource :profiles, only: [:edit,:update]
       get "/sign_out" => "settings#logout"
-      get "/withdrawal" => "settings#withdrawal"
+      patch "/withdrawal" => "settings#withdrawal"
+      get "/withdrawal" => redirect("/")
       resource :settings, only: [:edit,:update]
     end
     get "/favorites" => "favorites#index"

@@ -11,11 +11,12 @@
       <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
     </div>
     
-    <!--user詳細-->
+    <!--user設定-->
     <div class='col-8 offset-1 py-5'>
-      
       <div class='my-5'>
-        <h4>設定※パスワードの照合とかまだ</h4>
+        <h4>設定</h4>
+        (password更新の実装は検討中)
+        <%= flash[:notice] %>
         <%= form_with model: @user, url: user_settings_path, method: :patch, local:true do |f| %>
         <div class='row justify-content-center'>
           <table class="table table-borderless">
@@ -28,12 +29,15 @@
               <td><%= f.password_field :password, autocomplete: "now-password" %></td>
             </tr>
             <tr>
-              <td><%= f.label :パスワード %></td>
-              <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+              <td><strong>パスワード変更(変更したい場合のみ入力)</strong></td>
             </tr>
             <tr>
-              <td><%= f.label :"パスワード(確認用)" %></td>
-              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+              <td><%= f.label :新パスワード %></td>
+              <td><%= f.password_field :new_password, autocomplete: "new-password" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :"新パスワード(確認用)" %></td>
+              <td><%= f.password_field :new_password_confirmation, autocomplete: "new-password" %></td>
             </tr>
           </table>
           <%= f.submit "更新", class:'btn btn-success px-5 mb-2' %>
@@ -44,7 +48,7 @@
       <div class='text-center'>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'btn btn-outline-secondary mb-5' %>
         <p>一度退会すると、このアカウントは使用できなくなります。</p>
-        <%= link_to "退会する", destroy_user_session_path, method: :delete, class:'btn btn-outline-danger' %>
+        <%= link_to "退会する", user_withdrawal_path, method: :patch, data: { confirm: "本当に退会しますか？" }, class:'btn btn-outline-danger' %>
       </div>
     
     </div>

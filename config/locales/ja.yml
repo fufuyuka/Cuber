@@ -1,0 +1,8 @@
+ja:
+  enums:
+    user:
+      user_status:
+        active: "有効"
+        withdrawal: "退会"
+        ban: "利用停止中"
+        
