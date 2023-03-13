@@ -2,10 +2,10 @@
   <div class='row'>
     <!--user-info-->
     <div class='col-3 text-center my-5'>
-      <%= image_tag @user.get_profile_image, size:'100x100' %>
+      <%= image_tag current_user.get_profile_image, size:'100x100' %>
       <p>貰ったいいね数</p>
       <p class='pb-3 border-bottom'>💗 182<%#= いいね合計数 %></p>
-      <%= link_to "マイページ", user_my_page_path, class:'text-dark' %><br>
+      <%= link_to "マイページ", user_path(current_user), class:'text-dark' %><br>
       <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
       <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
       <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
@@ -15,7 +15,7 @@
     <div class='col-8 offset-1 py-5'>
       <!--新規投稿-->
       <div>
-        <%= image_tag @user.get_profile_image, size:'50x50' %>
+        <%= image_tag current_user.get_profile_image, size:'50x50' %>
         <%= form_with model: @new_post, local:true do |f| %>
         <div>
           <%= f.text_area :statement, placeholder:"投稿してみよう！", size:'70x3' %>

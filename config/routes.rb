@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 # ユーザー用
-devise_for :users,skip: [:passwords], controllers: {
+devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
@@ -14,7 +14,7 @@ devise_for :users,skip: [:passwords], controllers: {
     get "/terms" => "homes#terms"
     get "/management" => "homes#management"
     namespace :user do
-      get "/my_page" => "profiles#show"
+      get "/profile/:id" => "profiles#show"
       resource :profiles, only: [:edit,:update]
       get "/sign_out" => "settings#logout"
       patch "/withdrawal" => "settings#withdrawal"

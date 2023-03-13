@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @post = Post.find(params[:id])
   end
   
@@ -18,7 +18,6 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @user = current_user
     @new_post = Post.new
     @posts = Post.all
   end

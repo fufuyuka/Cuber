@@ -1,19 +1,19 @@
 class Public::User::ProfilesController < ApplicationController
   before_action :authenticate_user!
+  # before_action :current_user 必要か？URLにidを含んでない
   
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @posts = @user.posts
   end
 
   def edit
-    @user = current_user
+    @user = current_user #フォームに既存データを渡すために定義
   end
   
   def update
-    @user = current_user
-    if @user.update(user_params)
-      redirect_to user_my_page_path
+    if current_user.update(user_params)
+      redirect_to user_path(current_user)
     else
       render "edit"
     end

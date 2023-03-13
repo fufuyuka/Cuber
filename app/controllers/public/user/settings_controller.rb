@@ -1,8 +1,9 @@
 class Public::User::SettingsController < ApplicationController
   before_action :authenticate_user!
+  # before_action :current_user 必要か？URLにidを含んでない
   
   def edit
-    @user = current_user
+    @user = current_user #フォームに既存データを渡すために
   end
 
   def update
@@ -26,8 +27,7 @@ class Public::User::SettingsController < ApplicationController
   end
   
   def withdrawal
-    @user = current_user
-    @user.update(user_status: "withdrawal") #ステータス変更
+    current_user.update(user_status: "withdrawal") #ステータス変更
     sign_out
     render :withdrawal #退会完了画面へ
   end
