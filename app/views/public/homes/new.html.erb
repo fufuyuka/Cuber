@@ -1,7 +1,6 @@
 <div class='container my-5'>
   <div class='row justify-content-center py-5'>
-      <h2>お問い合わせ</h2>
-      <%= flash[:notice] %>
+    <h2>お問い合わせ</h2>
   </div>
   <div class='row justify-content-center'>
   <%= form_with model: @contact, url: contacts_create_path, local:true do |f| %>
@@ -9,7 +8,7 @@
       <%= f.text_field :name, placeholder:"名前(必須)", class:"form-control name" %>
     </div>
     <div class="form-group py-2">
-      <%= f.text_field :email, placeholder:"メールアドレス(必須)", class:"form-control name" %>
+      <%= f.text_field :email, placeholder:"メールアドレス(必須)", class:"form-control email" %>
     </div>
     <div class="form-group">
       <%= f.text_area :contact_detail, placeholder:"お問い合わせ内容をご記入ください", size:"60x8", class:"form-control contact_detail" %>

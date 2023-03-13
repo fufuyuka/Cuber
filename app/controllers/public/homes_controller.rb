@@ -6,11 +6,12 @@ class Public::HomesController < ApplicationController
   end
   
   def new
+    @contact = Contact.new
   end
   
   def create
     @contact = Contact.new(contact_params)
-     if @contact.save
+    if @contact.save
       redirect_to contacts_completion_path
     else
       render 'new'
