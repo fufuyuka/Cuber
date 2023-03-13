@@ -3,7 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+  
+  has_many :posts
+  # has_many :favorites, dependent: :destroy
+  # has_many :favorited_users, through: :favorites, source: :post
+  # has_many :post_comments, dependent: :destroy
+
   enum user_status: { active: 0, withdrawal: 1, ban: 2 }
   #user_statusが有効の場合のみログインできる(controllerですり抜けた場合や複数ブラウザでしようとしたとき)
   def active_for_authentication?

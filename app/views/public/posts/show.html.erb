@@ -1,2 +1,40 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class='container px-5'>
+  <div class='row'>
+    <!--user-info-->
+    <div class='col-3 text-center my-5'>
+      <%= image_tag @user.get_profile_image, size:'100x100' %>
+      <p>貰ったいいね数</p>
+      <p class='pb-3 border-bottom'>💗 182<%#= いいね合計数 %></p>
+      <%= link_to "マイページ", user_my_page_path, class:'text-dark' %><br>
+      <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
+      <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
+      <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
+    </div>
+    
+    <div class='col-8 offset-1 py-5'>
+      <!--投稿詳細-->
+      <div class='mb-3'>
+        <%= image_tag @post.user.get_profile_image, size:"50x50" %>
+        <%= @post.user.name %>
+        <div class='ml-5'>
+          <%= @post.statement %>
+        </div>
+        <div class='row ml-5 pl-5'>
+          <p>いいね　コメント</p>
+          <% if @post.user == current_user %>
+            <p>ブックマーク　</p>
+            <%= link_to '×', @post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+          <% end %>
+        </div>
+      </div>
+      
+      <!--コメント-->
+      <div>
+        <p>コメント欄</p>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+

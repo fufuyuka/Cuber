@@ -17,10 +17,7 @@
       <p class='mb-5'><%= @user.profiles %></p>
     
       <!--user投稿一覧-->
-      <div>
-        <p>投稿を最新順に表示</p>
-      </div>
-      
+      <%= render 'public/posts/list', post: @posts %>
     </div>
     
   </div>

@@ -1,0 +1,19 @@
+<!--投稿リスト-->
+<% @posts.each do |post| %>
+<div class='my-3'>
+  <%= link_to user_my_page_path(post.user) do %>
+    <%= image_tag post.user.get_profile_image, size:"50x50" %>
+    <%= post.user.name %>
+  <% end %>
+  <div class='ml-5'>
+    <%= post.statement %>
+  </div>
+  <div class='row ml-5 pl-5'>
+    <p>いいね　コメント</p>
+    <% if post.user == current_user %>
+      <p>ブックマーク　</p>
+      <%= link_to '×', post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <% end %>
+  </div>
+</div>
+<% end %>
