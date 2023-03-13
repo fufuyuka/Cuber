@@ -1,2 +1,0 @@
-class PussleCategory < ApplicationRecord
-end

@@ -1,0 +1,2 @@
+class PuzzleCategory < ApplicationRecord
+end

@@ -1,2 +1,41 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class='container px-5'>
+  <div class='row'>
+    <!--user-info-->
+    <div class='col-3 text-center my-5'>
+      <%= image_tag @user.get_profile_image, size:'100x100' %>
+      <p>貰ったいいね数</p>
+      <p class='pb-3 border-bottom'>💗 182<%#= いいね合計数 %></p>
+      <%= link_to "マイページ", user_my_page_path, class:'text-dark' %><br>
+      <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
+      <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
+      <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
+    </div>
+    
+    <!--投稿-->
+    <div class='col-8 offset-1 py-5'>
+      <!--新規投稿-->
+      <div>
+        <%= image_tag @user.get_profile_image, size:'50x50' %>
+        <%= form_with model: @new_post, local:true do |f| %>
+        <div>
+          <%= f.text_area :statement, placeholder:"投稿してみよう！", size:'70x3' %>
+        </div>
+        <div>
+          <%#= f.select :puzzle_categoriy, options_from_collection_for_select(), size:"50x20" %>
+        </div>
+        <div>
+          <%= f.submit "投稿する", class:'btn btn-info' %>
+        </div>
+        <% end %>
+      </div>
+    
+      <!--タイムライン-->
+      <div>
+        <p>投稿を最新順に表示</p>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+
