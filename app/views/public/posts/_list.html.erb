@@ -5,9 +5,11 @@
     <%= image_tag post.user.get_profile_image, size:"50x50" %>
     <%= post.user.name %>
   <% end %>
+  <%= link_to post_path(post), class:'text-dark text-decoration-none' do %>
   <div class='ml-5'>
     <%= post.statement %>
   </div>
+  <% end %>
   <div class='row ml-5 pl-5'>
     <i class="far fa-heart text-secondary"></i>
     <i class="fas fa-heart text-danger"></i>
@@ -18,7 +20,7 @@
       <i class="fas fa-cube text-secondary"></i>
       <i class="fas fa-cube text-primary"></i>
       <p>ブックマーク　</p>
-      <%= link_to '×(削除)', post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <%= link_to "X(削除)", post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
     <% end %>
   </div>
 </div>

@@ -5,7 +5,6 @@ class Public::BookmarksController < ApplicationController
   end
   
   def index
-    @user = current_user
   end
   
   def destroy

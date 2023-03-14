@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :posts
   # has_many :favorites, dependent: :destroy
   # has_many :favorited_users, through: :favorites, source: :post
-  # has_many :post_comments, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   enum user_status: { active: 0, withdrawal: 1, ban: 2 }
   #user_statusが有効の場合のみログインできる(controllerですり抜けた場合や複数ブラウザでしようとしたとき)

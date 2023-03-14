@@ -6,7 +6,8 @@
       <p>貰ったいいね数</p>
       <p class='pb-3 border-bottom'>💗 182<%#= いいね合計数 %></p>
       <%= link_to "マイページ", user_path(current_user), class:'text-dark' %><br>
-      <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
+      <%= link_to "コメント", comments_path(current_user), class:'text-dark' %><br>
+      <%= link_to "いいね", favorites_path(current_user), class:'text-dark' %><br>
       <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
       <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
     </div>

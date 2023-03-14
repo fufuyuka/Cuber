@@ -29,8 +29,11 @@
       <% end %></h4>
       <p class='mb-5'><%= @user.profiles %></p>
     
-      <!--user投稿一覧-->
-      <%= render 'public/posts/list', post: @posts %>
+      <!--userコメント一覧-->
+      <div>
+        <%= render 'public/post_comments/list', comments: @comments %>
+      </div>
+      
     </div>
     
   </div>

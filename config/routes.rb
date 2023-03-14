@@ -21,12 +21,13 @@ devise_for :users, skip: [:passwords], controllers: {
       get "/withdrawal" => redirect("/")
       resource :settings, only: [:edit,:update]
     end
-    get "/favorites" => "favorites#index"
+    get "/:user_id/favorites" => "favorites#index", as: 'favorites'
     get "/bookmarks" => "bookmarks#index"
+    get "/:user_id/post_comments" => "post_comments#index", as: 'comments'
     resources :posts, only: [:create,:show,:index,:destroy] do
       resource :favorites, only: [:create,:destroy]
       resource :bookmarks, only: [:create,:destroy]
-      resources :post_comments, only: [:create,:index,:destroy]
+      resources :post_comments, only: [:create,:destroy]
     end
     get "/searches" => "searches#index"
   end

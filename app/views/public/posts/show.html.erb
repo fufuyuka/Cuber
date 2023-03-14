@@ -6,7 +6,8 @@
       <p>貰ったいいね数</p>
       <p class='pb-3 border-bottom'>💗 182<%#= いいね合計数 %></p>
       <%= link_to "マイページ", user_path(current_user), class:'text-dark' %><br>
-      <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
+      <%= link_to "コメント", comments_path(current_user), class:'text-dark' %><br>
+      <%= link_to "いいね", favorites_path(current_user), class:'text-dark' %><br>
       <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
       <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
     </div>
@@ -14,25 +15,45 @@
     <div class='col-8 offset-1 py-5'>
       <!--投稿詳細-->
       <div class='mb-3'>
-      <%= link_to user_path(@post.user.id) do %>
-        <%= image_tag @post.user.get_profile_image, size:"50x50" %>
-        <%= @post.user.name %>
-      <% end %>
+        <%= link_to user_path(@post.user.id) do %>
+          <%= image_tag @post.user.get_profile_image, size:"50x50" %>
+          <%= @post.user.name %>
+        <% end %>
+        <%= link_to post_path(@post), class:'text-dark text-decoration-none' do %>
         <div class='ml-5'>
           <%= @post.statement %>
         </div>
+        <% end %>
         <div class='row ml-5 pl-5'>
-          <p>いいね　コメント</p>
+          <i class="far fa-heart text-secondary"></i>
+          <i class="fas fa-heart text-danger"></i>
+          <p>いいね　</p>
+          <i class="far fa-comment-dots"></i>
+          <p>コメント　</p>
           <% if @post.user == current_user %>
+            <i class="fas fa-cube text-secondary"></i>
+            <i class="fas fa-cube text-primary"></i>
             <p>ブックマーク　</p>
-            <%= link_to '×', @post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+            <%= link_to '×(削除)', @post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
           <% end %>
         </div>
       </div>
-      
-      <!--コメント-->
+
       <div>
-        <p>コメント欄</p>
+        <!--コメント一覧-->
+        <div>
+          <%= render 'public/post_comments/list', comments: @comments %>
+        </div>
+
+        <!--新規コメント-->
+        <div>
+        <%= image_tag current_user.get_profile_image, size:'50x50' %>
+        <%= form_with model:[@post,@new_comment], local:true do |f| %>
+          <%= f.text_area :comment, placeholder:"コメントを書く", size:'60x3' %>
+          <%= f.hidden_field :post_id, :value => @post.id %>
+          <%= f.submit "送信", class:'btn btn-info' %>
+        <% end %>
+        </div>
       </div>
       
     </div>

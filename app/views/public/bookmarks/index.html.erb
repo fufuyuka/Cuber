@@ -2,27 +2,20 @@
   <div class='row'>
     <!--user-info-->
     <div class='col-3 text-center my-5'>
-      <% if @user == current_user %>
         <%= image_tag current_user.get_profile_image, size:'100x100' %>
         <p>貰ったいいね数</p>
         <p class='pb-3 border-bottom'>💗 182<%#= いいね合計数 %></p>
         <%= link_to "マイページ", user_path(current_user), class:'text-dark' %><br>
-        <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
+        <%= link_to "コメント", comments_path(current_user), class:'text-dark' %><br>
+        <%= link_to "いいね", favorites_path(current_user), class:'text-dark' %><br>
         <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
         <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
-      <% else %>
-        <%= image_tag @user.get_profile_image, size:'100x100' %>
-        <p>貰ったいいね数</p>
-        <p class='pb-3 border-bottom'>💗 12<%#= いいね合計数 %></p>
-        <%= link_to "投稿", user_path(@user), class:'text-dark' %><br>
-        <%= link_to "いいね", favorites_path, class:'text-dark' %><br>
-      <% end %>
     </div>
     
     <!--user詳細-->
     <div class='col-8 offset-1 py-5'>
-      <h4><%= @user.name %><%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %></h4>
-      <p class='mb-5'><%= @user.profiles %></p>
+      <h4><%= current_user.name %><%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %></h4>
+      <p class='mb-5'><%= current_user.profiles %></p>
     
       <!--userブックマーク一覧-->
       <div>

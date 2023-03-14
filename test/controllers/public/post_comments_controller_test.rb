@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Public::PostCommnentsControllerTest < ActionDispatch::IntegrationTest
+class Public::PostCommentsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

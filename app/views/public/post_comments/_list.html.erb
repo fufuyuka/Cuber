@@ -1,0 +1,13 @@
+<!--コメント一覧-->
+<% @comments.each do |comment| %>
+  <%= link_to user_path(comment.user), class:'my-2' do %>
+    <%= image_tag comment.user.get_profile_image, size:"50x50" %>
+    <%= comment.user.name %>
+  <% end %>
+  <p class='pl-5'><%= comment.comment %></p>
+  <div class='text-right'>
+  <% if comment.user == current_user %>
+    <%= link_to "コメント削除", post_post_comment_path(comment.post, comment), method: :delete, remote: true, class:'btn btn-sm btn-danger' %>
+  <% end %>
+  </div>
+<% end %>
