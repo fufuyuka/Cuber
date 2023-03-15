@@ -14,4 +14,9 @@ class Post < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
   
+  #投稿検索
+  def self.looks(word)
+    @posts = Post.where("statement LIKE?","%#{word}%")
+  end
+  
 end

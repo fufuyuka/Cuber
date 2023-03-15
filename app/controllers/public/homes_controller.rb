@@ -1,8 +1,12 @@
 class Public::HomesController < ApplicationController
+  
   def top
   end
   
   def search
+    @word = params[:word]
+    @range = params[:range]
+    @posts = Post.looks(params[:word])
   end
   
   def new

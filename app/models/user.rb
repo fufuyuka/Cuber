@@ -21,5 +21,10 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'user_default.jpg'
   end
+  
+  #ユーザー検索
+  def self.looks(word)
+    @users = User.where("name LIKE?","%#{word}%")
+  end
 
 end

@@ -1,2 +1,37 @@
-<h1>Public::Searches#index</h1>
-<p>Find me in app/views/public/searches/index.html.erb</p>
+<div class='container px-5'>
+  <div class='row'>
+    <!--user-info-->
+    <%= render 'public/user/info', user: current_user %>
+
+    <div class='col-6 offset-1 mt-4'>
+      <!--検索フォーム-->
+      <div>
+      <%= form_with url: top_searchs_path, local: true, method: :get do |f| %>
+        <%= f.text_field :word, placeholder: "気になるワード" %>
+        <%= f.select :range, options_for_select([['投稿'], ['ユーザー']]) %>
+        <%= f.submit "検索" %>
+      <% end %>
+      </div>
+      
+      <!--検索結果-->
+      <div>
+      <% if @range == "投稿" && @posts.length > 0 %>
+        <h5 class='text-center my-3'><%= @word %>"を含む投稿検索結果</h5>
+        <%= render 'public/posts/list', post: @posts %>
+      
+        <% elsif  @range == "ユーザー" && @users.length > 0 %>
+          <h4><%= @word %>"を含むユーザー検索結果</h4>
+          <%= render 'public/user/index', users: @users %>
+        
+        <% else %>
+          <p class="text-center p-4">一致するものはありませんでした</p>
+      <% end %>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+
+
+

@@ -1,1 +1,36 @@
-ヘッダーでの検索結果画面
+<div class='container px-5'>
+  <div class='row justify-content-center mt-3'>
+    <!--検索フォーム-->
+    <div>
+    <%= form_with url: top_searchs_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word, placeholder: "気になるワード" %>
+      <%= f.submit "検索" %>
+    <% end %>
+    </div>
+  </div>
+    
+  <!--検索結果-->
+  <div class='row justify-content-center my-4'>
+  <% if @range == "投稿" && @posts.length > 0 %>
+      <h4><%= @word %>"を含む投稿検索結果</h4>
+      <% @posts.each do |post| %>
+      <div class='my-3'>
+        <% link_to new_user_session_path, class:'text-dark text-decoration-none' do %>
+          <%= image_tag post.user.get_profile_image, size:"50x50" %>
+          <%= post.user.name %>
+          <div class='ml-5'>
+            <%= post.statement %>
+          </div>
+          <div class='d-flex justify-content-end'>
+            <p><i class="far fa-heart text-secondary"></i><%= post.favorites.count %></p>
+            <p><i class="far fa-comment-dots"></i><%= post.post_comments.count %></p>
+            <p><i class="fas fa-cube text-secondary"></i>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+    <% else %>
+      <p class="text-center p-4">一致するものはありませんでした</p>
+  <% end %>
+  </div>
+</div>

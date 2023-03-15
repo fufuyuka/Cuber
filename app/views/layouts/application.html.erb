@@ -24,7 +24,11 @@
         <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5'>
           <!--検索フォーム-->
           <div>
-          　<p>検索ボックス予定地</p>
+          <%= form_with url: searches_path, local: true, method: :get do |f| %>
+            <%= f.text_field :word, placeholder: "気になるワード" %>
+            <%= f.select :range, options_for_select([['投稿'], ['ユーザー']]) %>
+            <%= f.submit "検索" %>
+          <% end %>
           </div>
         </div>
       </nav>
@@ -62,7 +66,10 @@
           <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5'>
             <!--検索フォーム-->
             <div>
-            　<p>検索ボックス予定地</p>
+            <%= form_with url: top_searchs_path, local: true, method: :get do |f| %>
+              <%= f.text_field :word, placeholder: "気になるワード" %>
+            <%= f.submit "検索" %>
+          <% end %>
             </div>
             <!--ヘッダー見出し-->
             <ul class='nav navbar-nav m-auto'>
