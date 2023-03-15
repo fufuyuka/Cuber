@@ -10,27 +10,30 @@
   </div>
     
   <!--検索結果-->
-  <div class='row justify-content-center my-4'>
-  <% if @range == "投稿" && @posts.length > 0 %>
-      <h4><%= @word %>"を含む投稿検索結果</h4>
-      <% @posts.each do |post| %>
-      <div class='my-3'>
-        <% link_to new_user_session_path, class:'text-dark text-decoration-none' do %>
-          <%= image_tag post.user.get_profile_image, size:"50x50" %>
-          <%= post.user.name %>
-          <div class='ml-5'>
-            <%= post.statement %>
-          </div>
-          <div class='d-flex justify-content-end'>
-            <p><i class="far fa-heart text-secondary"></i><%= post.favorites.count %></p>
-            <p><i class="far fa-comment-dots"></i><%= post.post_comments.count %></p>
-            <p><i class="fas fa-cube text-secondary"></i>
-          </div>
-        <% end %>
-      </div>
+  <div class='row flex-column m-auto'>
+  <% if @posts.length > 0 %>
+    <div class='col my-4'>
+      <h4 class='text-center'>投稿に"<%= @word %>"を含む検索結果</h4>
+    </div>
+    <% @posts.each do |post| %>
+    <div class='col-6 my-3 m-auto'>
+      <%= link_to new_user_session_path, class:'text-dark text-decoration-none' do %>
+        <%= image_tag post.user.get_profile_image, size:"50x50" %>
+        <%= post.user.name %>
+        <div class='ml-5'>
+          <%= post.statement %>
+        </div>
+        <div class='d-flex justify-content-end'>
+          <p><i class="far fa-heart text-secondary"></i><%= post.favorites.count %></p>
+          <p><i class="far fa-comment-dots"></i><%= post.post_comments.count %></p>
+          <p><i class="fas fa-cube text-secondary"></i>
+        </div>
       <% end %>
+    </div>
+    <% end %>
     <% else %>
       <p class="text-center p-4">一致するものはありませんでした</p>
   <% end %>
   </div>
+
 </div>

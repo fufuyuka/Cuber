@@ -16,11 +16,11 @@
       <!--検索結果-->
       <div>
       <% if @range == "投稿" && @posts.length > 0 %>
-        <h5 class='text-center my-3'><%= @word %>"を含む投稿検索結果</h5>
+        <h5 class='text-center my-3'>投稿に"<%= @word %>"を含む検索結果</h5>
         <%= render 'public/posts/list', post: @posts %>
       
         <% elsif  @range == "ユーザー" && @users.length > 0 %>
-          <h4><%= @word %>"を含むユーザー検索結果</h4>
+          <h4>ユーザー名に"<%= @word %>"を含む検索結果</h4>
           <%= render 'public/user/index', users: @users %>
         
         <% else %>
