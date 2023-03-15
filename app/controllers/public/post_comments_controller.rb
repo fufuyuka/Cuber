@@ -16,7 +16,7 @@ class Public::PostCommentsController < ApplicationController
   def destroy
     @comment = PostComment.find(params[:id])
     @comment.destroy
-    redirect_to post_path(@comment.post.id)
+    redirect_to request.referer
   end
   
   def post_comment_params

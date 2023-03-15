@@ -1,39 +1,72 @@
 <div class='container px-5'>
   <div class='row'>
     <!--user-info-->
-    <div class='col-3 text-center my-5'>
-      <% if @user == current_user %>
-        <%= image_tag current_user.get_profile_image, size:'100x100' %>
-        <p>貰ったいいね数</p>
-        <p class='pb-3 border-bottom'>💗 182<%#= いいね合計数 %></p>
-        <%= link_to "マイページ", user_path(current_user), class:'text-dark' %><br>
-        <%= link_to "コメント", comments_path(current_user), class:'text-dark' %><br>
-        <%= link_to "いいね", favorites_path(current_user), class:'text-dark' %><br>
-        <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %><br>
-        <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
-      <% else %>
-        <%= image_tag @user.get_profile_image, size:'100x100' %>
-        <p>貰ったいいね数</p>
-        <p class='pb-3 border-bottom'>💗 12<%#= いいね合計数 %></p>
-        <%= link_to "投稿", user_path(@user), class:'text-dark' %><br>
-        <%= link_to "コメント", comments_path(@user), class:'text-dark' %><br>
-        <%= link_to "いいね", favorites_path(@user), class:'text-dark' %><br>
-      <% end %>
-    </div>
+    <%= render 'public/user/info', user: @user %>
     
     <!--user詳細-->
-    <div class='col-8 offset-1 py-5'>
-      <h4><%= @user.name %>
-      <% if @user == current_user %>
-        <%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %>
-      <% end %></h4>
+    <div class='col-6 offset-1 py-5'>
+      <h4><%= @user.name %></h4>
+      <div class='d-flex justify-content-end'>
+        <% if @user == current_user %>
+          <%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %>
+        <% end %>
+      </div>
       <p class='mb-5'><%= @user.profiles %></p>
     
       <!--userいいね一覧-->
+      <% @favorited_posts.each do |favorited_post| %>
+      <div class='my-3'>
+        <%= link_to user_path(favorited_post.user) do %>
+          <%= image_tag favorited_post.user.get_profile_image, size:"50x50" %>
+          <%= favorited_post.user.name %>
+        <% end %>
+        <%= link_to post_path(favorited_post), class:'text-dark text-decoration-none' do %>
+        <div class='ml-5'>
+          <%= favorited_post.statement %>
+        </div>
+        <% end %>
+        <!--いいね,コメント,ブックマーク,削除-->
+        <div class='d-flex justify-content-end'>
+        <% if favorited_post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(favorited_post), method: :delete do %>
+              <i class="fas fa-heart text-danger"></i><%= favorited_post.favorites.count %>
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to post_favorites_path(favorited_post), method: :post do %>
+              <i class="far fa-heart text-secondary"></i><%= favorited_post.favorites.count %>
+            <% end %>
+          </p>
+        <% end %>
+        
+          <i class="far fa-comment-dots"></i>
+          <p>コメント　</p>
+          
+        <% if favorited_post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(favorited_post), method: :delete do %>
+              <i class="fas fa-cube text-primary"></i>
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to post_favorites_path(favorited_post), method: :post do %>
+              <i class="fas fa-cube text-secondary"></i>
+            <% end %>
+          </p>
+        <% end %>
+          
+        <% if favorited_post.user == current_user %>
+          <%= link_to '×(削除)', favorited_post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+        <% end %>
+        </div>
+      </div>
+      <% end %>
+      
       <div>
-        <p>いいねを最後に押した順に表示</p>
-        <!--current_userのいいねの投稿を取り出し-->
-        <%#= render 'public/posts/list', post: @posts %>
+        <%#= render 'public/posts/list', post: @favorited_posts %>
       </div>
       
     </div>

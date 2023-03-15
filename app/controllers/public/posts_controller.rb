@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+      redirect_to posts_path #遷移元によって遷移先を変えたい
   end
   
   private

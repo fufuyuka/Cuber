@@ -1,7 +1,7 @@
 <!--投稿リスト-->
 <% @posts.each do |post| %>
 <div class='my-3'>
-  <%= link_to user_path(post.user.id) do %>
+  <%= link_to user_path(post.user) do %>
     <%= image_tag post.user.get_profile_image, size:"50x50" %>
     <%= post.user.name %>
   <% end %>
@@ -10,18 +10,43 @@
     <%= post.statement %>
   </div>
   <% end %>
-  <div class='row ml-5 pl-5'>
-    <i class="far fa-heart text-secondary"></i>
-    <i class="fas fa-heart text-danger"></i>
-    <p>いいね　</p>
-    <i class="far fa-comment-dots"></i>
-    <p>コメント　</p>
-    <% if post.user == current_user %>
-      <i class="fas fa-cube text-secondary"></i>
-      <i class="fas fa-cube text-primary"></i>
-      <p>ブックマーク　</p>
-      <%= link_to "X(削除)", post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
-    <% end %>
+  <!--いいね,コメント,ブックマーク,削除-->
+  <div class='d-flex justify-content-end'>
+  <% if post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorites_path(post), method: :delete do %>
+        <i class="fas fa-heart text-danger"></i><%= post.favorites.count %>
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(post), method: :post do %>
+        <i class="far fa-heart text-secondary"></i><%= post.favorites.count %>
+      <% end %>
+    </p>
+  <% end %>
+    <p>
+      <%= link_to post_path(post), method: :post do %>
+        <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
+      <% end %>
+    </p>
+  <% if post.bookmarked_by?(current_user) %>
+    <p>
+      <%= link_to post_bookmarks_path(post), method: :delete do %>
+        <i class="fas fa-cube text-primary"></i>
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_bookmarks_path(post), method: :post do %>
+        <i class="fas fa-cube text-secondary"></i>
+      <% end %>
+    </p>
+  <% end %>
+
+  <% if post.user == current_user %>
+    <%= link_to '×(削除)', post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  <% end %>
   </div>
 </div>
 <% end %>
