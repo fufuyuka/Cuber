@@ -20,6 +20,7 @@ devise_for :users, skip: [:passwords], controllers: {
       patch "/withdrawal" => "settings#withdrawal"
       get "/withdrawal" => redirect("/")
       resource :settings, only: [:edit,:update]
+      get "/settings" => "settings#edit"
     end
     get "/:user_id/favorites" => "favorites#index", as: 'favorites'
     get "/bookmarks" => "bookmarks#index"
@@ -36,9 +37,10 @@ devise_for :users, skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
+
   namespace :admin do
     root to: "contacts#index"
-   get "/sign_out" => "#logout" #管理者のログアウト完了ページ
+    get "/sign_out" => "homes#logout" #管理者のログアウト完了ページ
     resources :contucts, only: [:index, :edit, :update]
     resources :users, only: [:index, :show, :edit, :update]
     resources :searches, only: [:index]

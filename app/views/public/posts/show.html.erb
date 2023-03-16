@@ -6,52 +6,63 @@
     <div class='col-6 offset-1 py-5'>
       <!--投稿詳細-->
       <div class='mb-3'>
-        <%= link_to user_path(@post.user.id) do %>
-          <%= image_tag @post.user.get_profile_image, size:"50x50" %>
-          <%= @post.user.name %>
-        <% end %>
-        <%= link_to post_path(@post), class:'text-dark text-decoration-none' do %>
-        <div class='ml-5'>
-          <%= @post.statement %>
+        <div class='row'>
+          <div>
+          <%= link_to user_path(@post.user.id) do %>
+            <%= image_tag @post.user.get_profile_image, size:"50x50" %>
+          </div>
+          <div class='col'>
+            <%= @post.user.name %>
+          <% end %>
+          </div>
+          <div class='col text-right'>
+          <%= link_to user_path(@post.user.id) do %>
+            <% if @post.puzzle_category_id.present? %>
+              <%= @post.puzzle_category.category %>
+            <% end %>
+          <% end %>
+          </div>
         </div>
+        <div class='ml-5'>
+        <%= link_to post_path(@post), class:'text-dark text-decoration-none' do %>
+          <%= @post.statement %>
         <% end %>
+        </div>
         
         <!--いいね,コメント,ブックマーク,削除-->
         <div class='d-flex justify-content-end'>
-        <% if @post.favorited_by?(current_user) %>
-          <p>
+          <p class='mx-3'>
+          <% if @post.favorited_by?(current_user) %>
             <%= link_to post_favorites_path(@post), method: :delete do %>
               <i class="fas fa-heart text-danger"></i><%= @post.favorites.count %>
             <% end %>
-          </p>
           <% else %>
-          <p>
             <%= link_to post_favorites_path(@post), method: :post do %>
               <i class="far fa-heart text-secondary"></i><%= @post.favorites.count %>
             <% end %>
+          <% end %>
           </p>
-        <% end %>
-        
-          <i class="far fa-comment-dots"></i>
-          <p>コメント　</p>
-          
-        <% if @post.bookmarked_by?(current_user) %>
-          <p>
+          <p class='mx-3'>
+            <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
+          </p>
+          <p class='mx-3'>
+          <% if @post.bookmarked_by?(current_user) %>
             <%= link_to post_bookmarks_path(@post), method: :delete do %>
               <i class="fas fa-cube text-primary"></i>
             <% end %>
-          </p>
           <% else %>
-          <p>
             <%= link_to post_bookmarks_path(@post), method: :post do %>
               <i class="fas fa-cube text-secondary"></i>
             <% end %>
+          <% end %>
           </p>
-        <% end %>
-          
-        <% if @post.user == current_user %>
-          <%= link_to '×(削除)', @post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
-        <% end %>
+          <p class='ml-3'>
+          <% if @post.user == current_user %>
+            <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+            <i class="fas fa-times text-dark"></i>
+            <% end %>
+          <% end %>
+          </p>
         </div>
       </div>
 
@@ -62,13 +73,15 @@
         </div>
 
         <!--新規コメント-->
-        <div>
-        <%= image_tag current_user.get_profile_image, size:'50x50' %>
-        <%= form_with model:[@post,@new_comment], local:true do |f| %>
-          <%= f.text_area :comment, placeholder:"コメントを書く", size:'60x3' %>
-          <%= f.hidden_field :post_id, :value => @post.id %>
-          <%= f.submit "送信", class:'btn btn-info' %>
-        <% end %>
+        <div class='row my-3'>
+          <%= image_tag current_user.get_profile_image, size:'50x50' %>
+          <%= form_with model:[@post,@new_comment], local:true do |f| %>
+            <%= f.text_area :comment, placeholder:"コメントを書く", size:'60x3' %>
+            <%= f.hidden_field :post_id, :value => @post.id %>
+          <div class='text-right'>
+            <%= f.submit "送信", class:'btn btn-info' %>
+          <% end %>
+          </div>
         </div>
       </div>
       

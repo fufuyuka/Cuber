@@ -26,7 +26,7 @@
           <div>
           <%= form_with url: searches_path, local: true, method: :get do |f| %>
             <%= f.text_field :word, placeholder: "気になるワード" %>
-            <%= f.select :range, options_for_select([['投稿'], ['ユーザー']]) %>
+            <%= f.select :range, options_for_select([['投稿'], ['ユーザー'], ['パズルタイプ']]) %>
             <%= f.submit "検索" %>
           <% end %>
           </div>
@@ -50,7 +50,7 @@
                 <%= link_to "検索", admin_searches_path, class:'nav-link text-dark' %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_admin_session_path, class:'nav-link text-dark' %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'nav-link text-dark' %>
               </li>
             </ul>
           </div>

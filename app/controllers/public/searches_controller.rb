@@ -4,11 +4,12 @@ class Public::SearchesController < ApplicationController
   def index
     @word = params[:word]
     @range = params[:range]
-
     if @range == "投稿"
       @posts = Post.looks(params[:word])
-    else
+    elsif @range == "ユーザー"
       @users = User.looks(params[:word])
+    else
+      @posts = PuzzleCategory.looks(params[:word])
     end
   end
 end

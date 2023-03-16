@@ -3,6 +3,7 @@ class Public::User::SettingsController < ApplicationController
   # before_action :current_user 必要か？URLにidを含んでない
   
   def edit
+    flash.clear
     @user = current_user #フォームに既存データを渡すために
   end
 
@@ -19,10 +20,12 @@ class Public::User::SettingsController < ApplicationController
       
       current_user.update(email: params[:user][:email])
       flash[:notice] = "メールアドレスをを変更しました"
-      redirect_to  edit_user_settings_path
+      @user = current_user
+      render :edit
     else
       flash[:notice] = "現在のパスワードが一致しません。"
-      redirect_to edit_user_settings_path
+      @user = current_user
+      render :edit
     end
   end
   

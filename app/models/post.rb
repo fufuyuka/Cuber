@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 
   belongs_to :user
-  belongs_to :puzzle_categoriy
+  belongs_to :puzzle_category, optional: true #nilでも登録できる
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   # has_many :favorited_users, through: :favorites, source: :user

@@ -16,57 +16,69 @@
       <!--userいいね一覧-->
       <% @favorited_posts.each do |favorited_post| %>
       <div class='my-3'>
-        <%= link_to user_path(favorited_post.user) do %>
-          <%= image_tag favorited_post.user.get_profile_image, size:"50x50" %>
-          <%= favorited_post.user.name %>
-        <% end %>
-        <%= link_to post_path(favorited_post), class:'text-dark text-decoration-none' do %>
-        <div class='ml-5'>
-          <%= favorited_post.statement %>
+        <div class='row'>
+          <div>
+          <%= link_to user_path(favorited_post.user) do %>
+            <%= image_tag favorited_post.user.get_profile_image, size:"50x50" %>
+          </div>
+          <div class='col'>
+            <%= favorited_post.user.name %>
+          <% end %>
+          </div>
+          <div class='col text-right'>
+          <%= link_to user_path(favorited_post.user) do %>
+            <% if favorited_post.puzzle_category_id.present? %>
+              <%= favorited_post.puzzle_category.category %>
+            <% end %>
+          <% end %>
+          </div>
         </div>
+        <div class='ml-5'>
+        <%= link_to post_path(favorited_post), class:'text-dark text-decoration-none' do %>
+          <%= favorited_post.statement %>
         <% end %>
+        </div>
+        
         <!--いいね,コメント,ブックマーク,削除-->
         <div class='d-flex justify-content-end'>
-        <% if favorited_post.favorited_by?(current_user) %>
-          <p>
-            <%= link_to post_favorites_path(favorited_post), method: :delete do %>
-              <i class="fas fa-heart text-danger"></i><%= favorited_post.favorites.count %>
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to post_favorites_path(favorited_post), method: :post do %>
-              <i class="far fa-heart text-secondary"></i><%= favorited_post.favorites.count %>
-            <% end %>
-          </p>
-        <% end %>
-        
-          <i class="far fa-comment-dots"></i>
-          <p>コメント　</p>
-          
-        <% if favorited_post.favorited_by?(current_user) %>
-          <p>
-            <%= link_to post_favorites_path(favorited_post), method: :delete do %>
-              <i class="fas fa-cube text-primary"></i>
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to post_favorites_path(favorited_post), method: :post do %>
-              <i class="fas fa-cube text-secondary"></i>
-            <% end %>
-          </p>
-        <% end %>
-          
-        <% if favorited_post.user == current_user %>
-          <%= link_to '×(削除)', favorited_post, method: :delete, data: { confirm: '本当に削除しますか？' } %>
-        <% end %>
-        </div>
-      </div>
+    <p class='mx-3'>
+    <% if favorited_post.favorited_by?(current_user) %>
+      <%= link_to post_favorites_path(favorited_post), method: :delete do %>
+        <i class="fas fa-heart text-danger"></i><%= favorited_post.favorites.count %>
       <% end %>
+    <% else %>
+      <%= link_to post_favorites_path(favorited_post), method: :post do %>
+        <i class="far fa-heart text-secondary"></i><%= favorited_post.favorites.count %>
+      <% end %>
+    <% end %>
+    </p>
+    <p class='mx-3'>
+      <i class="far fa-comment-dots"></i><%= favorited_post.post_comments.count %>
+    </p>
+    <p class='mx-3'>
+    <% if favorited_post.bookmarked_by?(current_user) %>
+      <%= link_to post_bookmarks_path(favorited_post), method: :delete do %>
+        <i class="fas fa-cube text-primary"></i>
+      <% end %>
+    <% else %>
+      <%= link_to post_bookmarks_path(favorited_post), method: :post do %>
+        <i class="fas fa-cube text-secondary"></i>
+      <% end %>
+    <% end %>
+    </p>
+    <p class='ml-3'>
+    <% if favorited_post.user == current_user %>
+      <%= link_to post_path(favorited_post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+        <i class="fas fa-times text-dark"></i>
+      <% end %>
+    <% end %>
+    </p>
+  </div>
+</div>
+<% end %>
       
       <div>
-        <%#= render 'public/posts/list', post: @favorited_posts %>
+        <%#= render 'public/posts/list', posts: @favorited_posts %>
       </div>
       
     </div>
