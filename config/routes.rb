@@ -7,7 +7,7 @@ devise_for :users, skip: [:passwords], controllers: {
 }
   scope module: :public do
     root to: "homes#top"
-    get "/top/searchs" => "homes#search"
+    get "/top/searches" => "homes#search"
     get "/contacts/new" => "homes#new"
     post "/contacts/create" => "homes#create"
     get "/contacts/completion" => "homes#completion"
@@ -37,8 +37,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
   namespace :admin do
-    root to: "homes#top"
-    get "/logout" => "homes#logout" #管理者のログアウト完了ページ
+    root to: "contacts#index"
+   get "/sign_out" => "#logout" #管理者のログアウト完了ページ
     resources :contucts, only: [:index, :edit, :update]
     resources :users, only: [:index, :show, :edit, :update]
     resources :searches, only: [:index]

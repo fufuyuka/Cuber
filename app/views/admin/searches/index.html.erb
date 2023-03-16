@@ -1,2 +1,26 @@
-<h1>Admin::Searches#index</h1>
-<p>Find me in app/views/admin/searches/index.html.erb</p>
+<div class='container p-2'>
+  <!--検索フォーム-->
+  <div class='row justify-content-center'>
+  <%= form_with url: searches_path, local: true, method: :get do |f| %>
+    <%= f.text_field :word, placeholder: "気になるワード" %>
+    <%= f.select :range, options_for_select([['投稿'], ['ユーザー']]) %>
+    <%= f.submit "検索" %>
+  <% end %>
+  </div>
+  
+  <!--検索結果-->
+  <div class='row justify-content-center'>
+  <% if @range == "投稿" && @posts.length > 0 %>
+    <h5 class='text-center my-3'>投稿に"<%= @word %>"を含む検索結果</h5>
+    <%= render 'public/posts/list', post: @posts %>
+  
+    <% elsif  @range == "ユーザー" && @users.length > 0 %>
+      <h4>ユーザー名に"<%= @word %>"を含む検索結果</h4>
+      <%= render 'public/user/index', users: @users %>
+
+    <% else %>
+      <p class="text-center p-4">一致するものはありませんでした</p>
+  <% end %>
+  </div>
+</div>
+

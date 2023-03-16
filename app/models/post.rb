@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
 
   belongs_to :user
+  belongs_to :puzzle_categoriy
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   # has_many :favorited_users, through: :favorites, source: :user

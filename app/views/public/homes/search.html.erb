@@ -2,7 +2,7 @@
   <div class='row justify-content-center mt-3'>
     <!--検索フォーム-->
     <div>
-    <%= form_with url: top_searchs_path, local: true, method: :get do |f| %>
+    <%= form_with url: top_searches_path, local: true, method: :get do |f| %>
       <%= f.text_field :word, placeholder: "気になるワード" %>
       <%= f.submit "検索" %>
     <% end %>

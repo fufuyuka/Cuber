@@ -6,7 +6,7 @@
     <div class='col-6 offset-1 mt-4'>
       <!--検索フォーム-->
       <div>
-      <%= form_with url: top_searchs_path, local: true, method: :get do |f| %>
+      <%= form_with url: searches_path, local: true, method: :get do |f| %>
         <%= f.text_field :word, placeholder: "気になるワード" %>
         <%= f.select :range, options_for_select([['投稿'], ['ユーザー']]) %>
         <%= f.submit "検索" %>
@@ -32,6 +32,3 @@
     
   </div>
 </div>
-
-
-

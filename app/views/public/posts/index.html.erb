@@ -13,9 +13,9 @@
           <%= f.text_area :statement, placeholder:"投稿してみよう！", size:'70x3' %>
         </div>
         <div>
-          <%#= f.select :puzzle_categoriy, options_from_collection_for_select(), size:"50x20" %>
+          <%#= f.select :puzzle_categoriy_id, PuzzleCategory.all.map { |puzzle_categoriy| [puzzle_categoriy.name, puzzle_categoriy.id] }, size:"50x20" %>
         </div>
-        <div>
+        <div class='text-right'>
           <%= f.submit "投稿する", class:'btn btn-info' %>
         </div>
         <% end %>

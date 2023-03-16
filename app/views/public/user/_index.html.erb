@@ -1,1 +1,15 @@
-ユーザー検索後のユーザー一覧
+<!--ユーザーリスト-->
+<% @users.each do |user| %>
+<div class='my-3'>
+  <%= link_to user_path(user), class:'text-dark text-decoration-none' do %>
+    <%= image_tag user.get_profile_image, size:"50x50" %>
+    <strong><%= user.name %></strong>
+    <div class='d-flex justify-content-end'>
+      </p><i class="fas fa-heart text-danger"></i>12<%#= user.favorites.count %><p>
+    </div>
+  <div class='ml-5'>
+    <%= user.profiles %>
+  </div>
+  <% end %>
+</div>
+<% end %>

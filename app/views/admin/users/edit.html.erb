@@ -1,2 +1,24 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class='container my-5'>
+  <div class='row justify-content-center'>
+    <div class="col-5">
+    <%= form_with model: @user, url: user_profiles_path, method: :patch, local:true do |f| %>
+    <teble>
+      <tr class="form-group">
+        <td><%= f.label :ユーザー名 %></td>
+        <td><%= f.text_field :name, class: "form-control name" %></td>
+      </tr>
+      <tr class="form-group">
+        <td><%= f.label :アイコン画像 %></td>
+        <td><%= f.file_field :profile_image, class: "form-control-file profile_image", accept: 'image/*' %></td>
+      </tr>
+      <tr class="form-group">
+        <td><%= f.label :プロフィール %></td>
+        <td><%= f.text_area :profiles, class: "form-control profiles" %></td>
+      </tr>
+      <tr class="form-group">
+        <td><%= f.submit "更新", class:'btn btn-info px-5 mb-2' %></td>
+      </tr>
+    </teble>
+    <% end %>
+  </div>
+</div>

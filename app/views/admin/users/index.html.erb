@@ -1,2 +1,44 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class='container p-2'>
+  <!--検索フォーム-->
+  <div class='row justify-content-center my-2'>
+    <h4>ユーザー一覧</h4>
+  </div>
+  
+  <!--検索結果-->
+  <div class='row justify-content-center'>
+    <table class='table table-bordered'>
+      <thead class='table-secondary text-center'>
+        <tr>
+          <th class='col-2'>登録日</th>
+          <th class='col-1'>ID</th>
+          <th class='col-2'>ユーザー名</th>
+          <th class='col-4'>メールアドレス</th>
+          <th class='col-2'>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr class='text-center'>
+          <td>
+            <%= user.created_at.strftime('%Y/%m/%d') %>
+          </td>
+          <td class='text-left'>
+          <%= link_to admin_user_path(user) do %>
+            <strong><%= user.id %></strong>
+          <% end %>
+          </td>
+          <td class='text-left'>
+            <%= user.name %>
+          </td>
+          <td>
+            <%= user.email %>
+          </td>
+          <td>
+            <%= user.user_status_i18n %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
