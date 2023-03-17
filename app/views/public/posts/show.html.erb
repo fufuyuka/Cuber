@@ -1,29 +1,31 @@
-<div class='container px-5'>
+<div class='container py-2'>
   <div class='row'>
     <!--user-info-->
     <%= render 'public/user/info', user: current_user %>
     
-    <div class='col-6 offset-1 py-5'>
+    <div class='col-8 offset-1 py-5'>
       <!--投稿詳細-->
-      <div class='mb-3'>
-        <div class='row'>
-          <div>
-          <%= link_to user_path(@post.user.id) do %>
-            <%= image_tag @post.user.get_profile_image, size:"50x50" %>
-          </div>
-          <div class='col'>
-            <%= @post.user.name %>
-          <% end %>
-          </div>
-          <div class='col text-right'>
-          <%= link_to user_path(@post.user.id) do %>
-            <% if @post.puzzle_category_id.present? %>
-              <%= @post.puzzle_category.category %>
-            <% end %>
-          <% end %>
-          </div>
+      <div class='row my-3'>
+        <div class='col-1'>
+        <%= link_to user_path(@post.user.id) do %>
+          <%= image_tag @post.user.get_profile_image, size:"50x50" %>
         </div>
-        <div class='ml-5'>
+        <div class='col-8'>
+          <div class='row m-auto'>
+            <div class='col-6 text-left'>
+            <%= @post.user.name %>
+        <% end %>
+            </div>
+            <div class='col-6 text-right'>
+            <%= link_to user_path(@post.user.id) do %>
+              <% if @post.puzzle_category_id.present? %>
+                <%= @post.puzzle_category.category %>
+              <% end %>
+            <% end %>
+          </div>
+          </div>
+        
+          <div class='row ml-3 mb-2'>
         <%= link_to post_path(@post), class:'text-dark text-decoration-none' do %>
           <%= @post.statement %>
         <% end %>
@@ -65,28 +67,29 @@
           </p>
         </div>
       </div>
+      </div>
 
+      <!--コメント一覧-->
       <div>
-        <!--コメント一覧-->
-        <div>
-          <%= render 'public/post_comments/list', comments: @comments %>
-        </div>
+        <%= render 'public/post_comments/list', comments: @comments %>
+      </div>
 
         <!--新規コメント-->
-        <div class='row my-3'>
-          <%= image_tag current_user.get_profile_image, size:'50x50' %>
-          <%= form_with model:[@post,@new_comment], local:true do |f| %>
-            <%= f.text_area :comment, placeholder:"コメントを書く", size:'60x3' %>
-            <%= f.hidden_field :post_id, :value => @post.id %>
-          <div class='text-right'>
-            <%= f.submit "送信", class:'btn btn-info' %>
-          <% end %>
-          </div>
-        </div>
-      </div>
-      
-    </div>
+      <div class='row my-3'>
+        <%= image_tag current_user.get_profile_image, size:'50x50', class:'m-1' %>
     
+          <div>
+          <%= form_with model:[@post,@new_comment], local:true do |f| %>
+            <%= f.text_area :comment, placeholder:"コメントを書く", size:'57x3' %>
+            <%= f.hidden_field :post_id, :value => @post.id %>
+          </div>
+          <div class='m-2 align-self-end'>
+              <%= f.submit "送信", class:'btn btn-info' %>
+            <% end %>
+          </div>
+       
+      </div>
+    </div>
+      
   </div>
 </div>
-

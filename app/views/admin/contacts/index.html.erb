@@ -1,2 +1,44 @@
-<h1>Admin::Contacts#index</h1>
-<p>Find me in app/views/admin/contacts/index.html.erb</p>
+<div class='container p-2'>
+  <div class='row justify-content-center my-2'>
+    <h4>お問い合わせ</h4>
+  </div>
+
+  <div class='row justify-content-center'>
+    <table class='table table-bordered'>
+      <thead class='table-secondary text-center'>
+        <tr>
+          <th class='col-1'>日付</th>
+          <th class='col-2'>氏名</th>
+          <th class='col-2'>メールアドレス</th>
+          <th class='col-5'>お問い合わせ内容</th>
+          <th class='col-1'>対応状況</th>
+          <th class='col-1'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @contacts.each do |contact| %>
+        <tr>
+          <td class='text-center'>
+            <%= contact.created_at.strftime('%Y/%m/%d') %>
+          </td>
+          <td class='text-center'>
+            <%= contact.name %>
+          </td>
+          <td class='text-center'>
+            <%= contact.email %>
+          </td>
+          <td>
+            <%= contact.contact_detail %>
+          </td>
+          <td class='text-center'>
+            <%= contact.supported_status_i18n %>
+          </td>
+          <td class='text-center'>
+            <%= link_to "詳細", edit_admin_contuct_path(contact), class:'btn btn-warning' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

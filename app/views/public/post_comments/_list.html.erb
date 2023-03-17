@@ -1,15 +1,28 @@
 <!--コメント一覧-->
 <% @comments.each do |comment| %>
+<div class='row my-3'>
+  
+  <div class='col-1 border-bottom'>
   <%= link_to user_path(comment.user), class:'my-2' do %>
     <%= image_tag comment.user.get_profile_image, size:"50x50" %>
-    <%= comment.user.name %>
+  </div>  
+  
+  <div class='col-8 border-bottom'>
+    <div class='row m-auto'>
+      <%= comment.user.name %>
   <% end %>
-  <p class='pl-5'><%= comment.comment %></p>
-  <div class='text-right pr-1'>
-  <% if comment.user == current_user %>
-    <%= link_to post_post_comment_path(comment.post, comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
-        <i class="fas fa-times text-dark"></i>
+    </div>
+    <div class='row ml-1 mb-2'>
+      <%= comment.comment %>
+    </div>
+    <div class='row d-flex justify-content-end pr-1'>
+    <% if comment.user == current_user %>
+      <%= link_to post_post_comment_path(comment.post, comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
+        <p><i class="fas fa-times text-dark"></i></p>
+      <% end %>
     <% end %>
-  <% end %>
+    </div>
   </div>
+  
+</div>
 <% end %>

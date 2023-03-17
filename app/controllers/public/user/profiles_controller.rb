@@ -20,6 +20,7 @@ class Public::User::ProfilesController < ApplicationController
     if current_user.update(user_params)
       redirect_to user_path(current_user)
     else
+      @user = current_user
       render "edit"
     end
   end
@@ -32,7 +33,7 @@ class Public::User::ProfilesController < ApplicationController
   end
   
   def ensure_guest_user
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.email == "guest@example.com"
       redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end

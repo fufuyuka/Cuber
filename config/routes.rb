@@ -42,7 +42,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     root to: "contacts#index"
     get "/sign_out" => "homes#logout" #管理者のログアウト完了ページ
     resources :contucts, only: [:index, :edit, :update]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      get "/comments" => "users#comments"
+    end
     resources :searches, only: [:index]
   end
   

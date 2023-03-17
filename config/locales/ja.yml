@@ -5,6 +5,11 @@ ja:
         active: "有効"
         withdrawal: "退会"
         ban: "利用停止中"
+    contact:
+      supported_status:
+        not_supported: "未対応"
+        support_now: "対応中"
+        finish_suppport: "対応済み"
   activerecord:
     attributes:
       user:

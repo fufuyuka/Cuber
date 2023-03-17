@@ -1,2 +1,38 @@
-<h1>Admin::Contacts#edit</h1>
-<p>Find me in app/views/admin/contacts/edit.html.erb</p>
+<div class='container p-2'>
+  <div class='row justify-content-center my-2'>
+    <h4>お問い合わせ内容</h4>
+  </div>
+
+  <div class='row justify-content-center'>
+    <table class='table table-bordered'>
+      <tr>
+        <td class='table-secondary'>日付</td>
+        <td><%= @contact.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <tr>
+        <td class='table-secondary'>氏名</td>
+        <td><%= @contact.name %></td>
+      </tr>
+      <tr>
+        <td class='table-secondary'>メールアドレス</td>
+        <td><%= @contact.email %></td>
+      </tr>
+      <tr>
+        <td class='table-secondary'>お問い合わせ内容</td>
+        <td><%= @contact.contact_detail %></td>
+      </tr>
+      <tr>
+        <td class='table-secondary'>メモ</td>
+        <td><%= @contact.memo %></td>
+      </tr>
+      <tr>
+        <td class='table-secondary'>対応状況</td>
+        <td><%= @contact.supported_status_i18n %></td>
+      </tr>
+    </table>
+  </div>
+    
+  <div class='row justify-content-center my-2'>
+    <h4>更新</h4>
+  </div>
+</div>

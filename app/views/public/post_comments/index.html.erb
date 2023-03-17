@@ -1,16 +1,14 @@
-<div class='container px-5'>
+<div class='container py-2'>
   <div class='row'>
     <!--user-info-->
     <%= render 'public/user/info', user: @user %>
     
-    <!--user詳細-->
-    <%= render 'public/user/profiles/ditail', user: @user %>
+    <div class='col-8 offset-1'>
+      <!--user詳細-->
+      <%= render 'public/user/profiles/ditail', user: @user %>
     
       <!--userコメント一覧-->
-      <div>
-        <%= render 'public/post_comments/list', comments: @comments %>
-      </div>
-      
+      <%= render 'public/post_comments/list', comments: @comments %>
     </div>
     
   </div>
