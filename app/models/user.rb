@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, length: { minimum:2, maximum:20 }
   validates :email, presence: true, uniqueness: true #空白でない＆一意性
   validates :password, length: { minimum: 6 }
   validates :profiles, length: { maximum: 140 }
@@ -38,5 +38,12 @@ class User < ApplicationRecord
   #ユーザー検索
   def self.looks(word)
     @users = User.where("name LIKE?","%#{word}%")
+  end
+  
+  def self.guest
+    find_or_create_by!(name: 'ゲストユーザー' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
+    end
   end
 end

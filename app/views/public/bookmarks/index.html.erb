@@ -4,12 +4,7 @@
     <%= render 'public/user/info', user: current_user %>
     
     <!--user詳細-->
-    <div class='col-6 offset-1 py-5'>
-      <h4><%= current_user.name %></h4>
-      <div class='d-flex justify-content-end'>
-        <%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %>
-      </div>
-      <p class='mb-5'><%= current_user.profiles %></p>
+    <%= render 'public/user/profiles/ditail', user: current_user %>
     
       <!--userブックマーク一覧-->
       <% @bookmarked_posts.each do |bookmarked_post| %>

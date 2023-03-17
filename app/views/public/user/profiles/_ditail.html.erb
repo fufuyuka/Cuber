@@ -1,0 +1,15 @@
+<div class='row mt-5 mb-4'>
+  <h4 class='col-5'><%= user.name %></h4>
+  <div class='col-4 mt-2 text-right'>
+    <% if (user == current_user) && (user.email != "guest@example.com") %>
+      <%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %>
+    <% else %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'btn btn-outline-secondary mb-5' %>
+    <% end %>
+  </div>
+</div>
+<div>
+  <div class='row'>
+    <p class='mb-5'><%= user.profiles %></p>
+  </div>
+</div>

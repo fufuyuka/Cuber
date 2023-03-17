@@ -1,5 +1,6 @@
 class Public::User::SettingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
   # before_action :current_user 必要か？URLにidを含んでない
   
   def edit
@@ -21,7 +22,7 @@ class Public::User::SettingsController < ApplicationController
       current_user.update(email: params[:user][:email])
       flash[:notice] = "メールアドレスをを変更しました"
       @user = current_user
-      render :edit　#renderなのでflash.clearされない
+      render :edit #renderなのでflash.clearされない
     else
       flash[:notice] = "現在のパスワードが一致しません。"
       @user = current_user
@@ -40,5 +41,12 @@ class Public::User::SettingsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email,:password)
+  end
+  
+  def ensure_guest_user
+    @user = current_user
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはユーザー設定画面へ遷移できません。'
+    end
   end
 end

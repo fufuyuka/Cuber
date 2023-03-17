@@ -4,14 +4,7 @@
     <%= render 'public/user/info', user: @user %>
     
     <!--user詳細-->
-    <div class='col-6 offset-1 py-5'>
-      <h4><%= @user.name %></h4>
-      <div class='d-flex justify-content-end'>
-        <% if @user == current_user %>
-          <%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %>
-        <% end %>
-      </div>
-      <p class='mb-5'><%= @user.profiles %></p>
+    <%= render 'public/user/profiles/ditail', user: @user %>
     
       <!--userコメント一覧-->
       <div>
