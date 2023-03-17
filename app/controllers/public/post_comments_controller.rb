@@ -5,7 +5,7 @@ class Public::PostCommentsController < ApplicationController
     @new_comment = PostComment.new(post_comment_params)
     @new_comment.user_id = current_user.id
     @new_comment.save
-    redirect_to post_path(@new_comment.post.id)
+    redirect_to request.referer
   end
   
   def index
