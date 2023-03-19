@@ -16,7 +16,7 @@ devise_for :users, skip: [:passwords], controllers: {
     namespace :user do
       get "/profile/:id" => "profiles#show"
       resource :profiles, only: [:edit,:update]
-      get "/sign_out" => "settings#logout"
+      get "/logout" => "settings#logout"
       patch "/withdrawal" => "settings#withdrawal"
       get "/withdrawal" => redirect("/")
       resource :settings, only: [:edit,:update]

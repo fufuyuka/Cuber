@@ -1,5 +1,5 @@
 class Public::User::SettingsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:logout]
   before_action :ensure_guest_user, only: [:edit]
   # before_action :current_user 必要か？URLにidを含んでない
   
@@ -28,6 +28,9 @@ class Public::User::SettingsController < ApplicationController
       @user = current_user
       render :edit
     end
+  end
+  
+  def logout
   end
   
   def withdrawal

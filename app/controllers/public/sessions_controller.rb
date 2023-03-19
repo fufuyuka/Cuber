@@ -9,7 +9,7 @@ class Public::SessionsController < Devise::SessionsController
   end
   
   def after_sign_out_path_for(resource)
-    user_sign_out_path
+    user_logout_path
   end
 
   protected

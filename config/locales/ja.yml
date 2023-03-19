@@ -125,7 +125,7 @@ ja:
       new:
         sign_in: ログイン
       signed_in: ""
-      signed_out: ログアウトしました。
+      signed_out: ""
     shared:
       links:
         back: 戻る

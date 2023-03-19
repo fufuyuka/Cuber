@@ -31,6 +31,6 @@ class Admin::SessionsController < Devise::SessionsController
   
   def after_sign_out_path_for(resource)
     flash.clear
-   admin_sign_out_path
+    admin_sign_out_path
   end
 end
