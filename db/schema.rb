@@ -92,12 +92,6 @@ ActiveRecord::Schema.define(version: 2023_03_16_072921) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "pussle_categories", force: :cascade do |t|
-    t.string "category", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "puzzle_categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

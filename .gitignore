@@ -40,4 +40,4 @@ yarn-debug.log*
 .yarn-integrity
 /.env
 
-/db/seeds/admin.rb
+/db/admin.rb
