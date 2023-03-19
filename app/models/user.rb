@@ -6,8 +6,7 @@ class User < ApplicationRecord
 
   validates :name, length: { in: 2..20 }
   validates :email, presence: true, uniqueness: true #空白でない＆一意性
-  validates :password, length: { minimum: 6 }
-  #validates :profiles, length: { maximum: 140 }
+  validates :profiles, length: { maximum: 140 }
 
   has_many :posts
   has_many :favorites, dependent: :destroy

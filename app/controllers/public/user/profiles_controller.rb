@@ -17,7 +17,7 @@ class Public::User::ProfilesController < ApplicationController
   end
   
   def update
-    if @user.update(user_params)
+    if current_user.update(user_params)
       redirect_to user_path(current_user)
     else
       @user = current_user

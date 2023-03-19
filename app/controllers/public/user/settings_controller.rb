@@ -11,16 +11,17 @@ class Public::User::SettingsController < ApplicationController
   def update
     #現passwordの一致確認 ※passwordは特殊なので更新が難しい
     if current_user.valid_password?(params[:user][:password])
-    #   #新パスワードの入力があり、確認用と一致している場合new_passwordを渡す
-    #   if params[:user][:new_password].present? && params[:user][:new_password_confirmation].present?
-    #       current_user(password: params[:user][:new_password])
-    #   else
-    #     flash[:notice] = "確認用パスワードが一致しません。"
-    #     redirect_to edit_user_settings_path
-    #   end
+      #新パスワードの入力があり、確認用と一致している場合new_passwordを渡す
+      # if params[:user][:new_password].present? && params[:user][:new_password_confirmation].present?
+      #     current_user.password = params[:user][:new_password]
+      #     current_user.password_confirmation = params[:user][:new_password_confirmation]
+      # else
+      #   flash[:notice] = "確認用パスワードが一致しません。"
+      #   redirect_to edit_user_settings_path
+      # end
       
       current_user.update(email: params[:user][:email])
-      flash[:notice] = "メールアドレスをを変更しました"
+      flash[:notice] = "メールアドレスを変更しました"
       @user = current_user
       render :edit #renderなのでflash.clearされない
     else

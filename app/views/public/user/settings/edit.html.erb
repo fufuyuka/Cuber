@@ -6,7 +6,7 @@
     <!--user設定-->
     <div class='col-8 offset-1 py-5'>
       <div class='my-5'>
-        <h4>設定</h4><p>(password更新の実装は検討中)</p>
+        <h4>設定</h4>
         <%= flash[:notice] %>
         <%= form_with model: @user, url: user_settings_path, method: :patch, local:true do |f| %>
         <div class='row justify-content-center'>
@@ -20,15 +20,16 @@
               <td><%= f.password_field :password, autocomplete: "now-password" %></td>
             </tr>
             <tr>
-              <td><strong>パスワード変更(変更したい場合のみ入力)</strong></td>
+              <!--<p>(password更新の実装は検討中)</p>-->
+              <!--<td><strong>パスワード変更(変更したい場合のみ入力)</strong></td>-->
             </tr>
             <tr>
-              <td><%= f.label :新パスワード %></td>
-              <td><%= f.password_field :new_password, autocomplete: "new-password" %></td>
+              <td><%#= f.label :新パスワード %></td>
+              <td><%#= f.password_field :new_password, autocomplete: "new-password" %></td>
             </tr>
             <tr>
-              <td><%= f.label :"新パスワード(確認用)" %></td>
-              <td><%= f.password_field :new_password_confirmation, autocomplete: "new-password" %></td>
+              <td><%#= f.label :"新パスワード(確認用)" %></td>
+              <td><%#= f.password_field :new_password_confirmation, autocomplete: "new-password" %></td>
             </tr>
           </table>
           <%= f.submit "更新", class:'btn btn-success px-5 mb-2' %>
