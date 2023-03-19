@@ -1,15 +1,23 @@
 <!--ユーザーリスト-->
 <% @users.each do |user| %>
-<div class='my-3'>
+<div class='row my-3'>
+  <div class='col-1 border-bottom'>
   <%= link_to user_path(user), class:'text-dark text-decoration-none' do %>
     <%= image_tag user.get_profile_image, size:"50x50" %>
-    <strong><%= user.name %></strong>
-    <div class='d-flex justify-content-end'>
-      </p><i class="fas fa-heart text-danger"></i>12<%#= user.favorites.count %><p>
-    </div>
-  <div class='ml-5'>
-    <%= user.profiles %>
   </div>
+  <div class='col-8 border-bottom'>
+    <div class='row m-auto'>
+      <div class='col-6 text-left'>
+        <strong><%= user.name %></strong>
+      </div>
+      <div class='col-6 text-right'>
+        <i class="fas fa-heart text-danger"></i>12<%#= user.favorites.count %>
+      </div>
+    </div>
+    <div class='row mx-2 mb-2'>
+      <%= user.profiles %>
+    </div>
   <% end %>
+  </div>
 </div>
 <% end %>

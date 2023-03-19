@@ -53,7 +53,7 @@
             </p>
             <p class='mx-3'>
             <% if bookmarked_post.bookmarked_by?(current_user) %>
-              <%= link_to post_bookmarks_path(bookmarked_post), method: :delete do %>
+              <%= link_to post_bookmarks_path(bookmarked_post), method: :delete, data: { confirm: 'ブックマークを取り消しますか？' } do %>
                 <i class="fas fa-cube text-primary"></i>
               <% end %>
             <% else %>

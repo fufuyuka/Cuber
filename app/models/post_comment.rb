@@ -4,4 +4,8 @@ class PostComment < ApplicationRecord
   
   validates :comment, presence: true, length: { maximum: 140 }
   
+  #投稿検索
+  def self.looks(word)
+    @comments = PostComment.where("comment LIKE?","%#{word}%")
+  end
 end

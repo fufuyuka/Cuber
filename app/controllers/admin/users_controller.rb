@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @users = User.all
   end
@@ -19,12 +21,16 @@ class Admin::UsersController < ApplicationController
   end
   
   def update
-    @user.save(user_params)
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user)
+    else
+      render "edit"
+    end
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name,:profile_image,:profiles)
   end
 end
