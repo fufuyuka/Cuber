@@ -4,13 +4,8 @@ class PuzzleCategory < ApplicationRecord
   validates :category, uniqueness: true, presence: true, length: { in: 1..20 }
   
   #投稿検索
-  # def self.looks(word)
-  #   @category = PuzzleCategory.where("category LIKE?","#{word}")
-  #   @posts = Post.where(puzzle_category_id: @category.id)
-  # end
-  
   def self.looks(word)
-    categorys = PuzzleCategory.where("category LIKE?","%#{word}%").pluck(:id)
-    @posts = Post.where(post_id: categorys)
+    category_ids = PuzzleCategory.where("category LIKE ?","%#{word}%").ids
+    @posts = Post.where(puzzle_category_id: category_ids)
   end
 end

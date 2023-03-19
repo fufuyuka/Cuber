@@ -3,7 +3,7 @@
   <div class='row justify-content-center'>
   <%= form_with url: admin_searches_path, local: true, method: :get do |f| %>
     <%= f.text_field :word, placeholder: "気になるワード" %>
-    <%= f.select :range, options_for_select([['投稿'],['コメント'],['ユーザー']]) %> <!--,[タグ]-->
+    <%= f.select :range, options_for_select([['投稿'],['コメント'],['ユーザー'],['タグ']]) %>
     <%= f.submit "検索" %>
   <% end %>
   </div>
