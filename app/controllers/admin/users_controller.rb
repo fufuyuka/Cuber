@@ -7,13 +7,6 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: @user.id)
-  end
-  
-  def comments
-    @user = User.find(1)
-    #@user = User.find(params[:id])
-    @comments = PostComment.where(user_id: @user.id)
   end
 
   def edit
@@ -21,6 +14,7 @@ class Admin::UsersController < ApplicationController
   end
   
   def update
+    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to admin_user_path(@user)
     else

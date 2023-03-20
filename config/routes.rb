@@ -39,12 +39,14 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 }
 
   namespace :admin do
-    root to: "contacts#index"
     get "/sign_out" => "homes#logout" #管理者のログアウト完了ページ
+    root to: "contacts#index"
     resources :contucts, only: [:index, :edit, :update]
-    resources :users, only: [:index, :show, :edit, :update] do
-      get "/comments" => "users#comments"
-    end
+    get "/:user_id/posts" => "posts#index", as: 'posts'
+    resources :posts, only: [:destroy]
+    get "/:user_id/post_comments" => "post_comments#index", as: 'post_comments'
+    resources :post_comments, only: [:destroy]
+    resources :users, only: [:index, :show, :edit, :update] 
     resources :searches, only: [:index]
   end
   
