@@ -41,7 +41,7 @@
             <!--ヘッダー見出し-->
             <ul class='nav navbar-nav m-auto'>
               <li>
-                <%= link_to "TOP", admin_root_path, class:'nav-link text-dark' %>
+                <%= link_to "お問い合わせ一覧", admin_root_path, class:'nav-link text-dark' %>
               </li>
               <li>
                 <%= link_to "ユーザー一覧", admin_users_path, class:'nav-link text-dark' %>
@@ -50,7 +50,7 @@
                 <%= link_to "検索", admin_searches_path, class:'nav-link text-dark' %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'nav-link text-dark' %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' }, class:'nav-link text-dark' %>
               </li>
             </ul>
           </div>

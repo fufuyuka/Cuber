@@ -25,15 +25,6 @@ class User < ApplicationRecord
     super && (user_status == "active" )
   end
   
-  #人からもらったいいねの合計
-  # def total_favorited
-  #   @favorites_count = 0
-  #   @posts = @user.posts
-  #   @posts.each do |post|
-  #     @favorites_count += post.favorites.count
-  #   end
-  # end
-  
   #ユーザー検索
   def self.looks(word)
     @users = User.where("name LIKE?","%#{word}%")
