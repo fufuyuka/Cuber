@@ -14,8 +14,12 @@
         <%= f.label :プロフィール %>
         <%= f.text_area :profiles, class: "form-control profiles", size:'30x4' %>
       </div>
+      <div class="form-group">
+        <%= f.label :ユーザーステータス %>
+        <%= f.select :user_status, User.user_statuses.keys.map {|k| [I18n.t("enums.user.user_status.#{k}"), k]}, class: "form-control user_status" %>
+      </div>
       <div class="form-group text-center">
-        <%= f.submit "更新", class:'btn btn-info px-5 mb-2' %>
+        <%= f.submit "更新", data: { confirm: "本当に更新しますか？" }, class:'btn btn-info px-5 mb-2' %>
       </div>
     <% end %>
   </div>

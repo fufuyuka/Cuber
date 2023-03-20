@@ -25,6 +25,6 @@ class Admin::UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name,:profile_image,:profiles)
+    params.require(:user).permit(:name,:profile_image,:profiles,:user_status)
   end
 end

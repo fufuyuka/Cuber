@@ -3,13 +3,12 @@
   <div class='col-4 text-right'>
     <% if (user == current_user) && (user.email != "guest@example.com") %>
       <%= link_to "編集", edit_user_profiles_path, class:'btn btn-info ml-5' %>
-    <% elsif user.email == "guest@example.com" %>
+    <% elsif user == current_user %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'btn btn-outline-secondary mb-5' %>
     <% else %>
     <% end %>
   </div>
 </div>
-  <div class='row'>
-    <p class='col-8 ml-3 mb-5'><%= user.profiles %></p>
-  </div>
-  
+<div class='row'>
+  <p class='col-8 ml-3 mb-5'><%= user.profiles %></p>
+</div>
