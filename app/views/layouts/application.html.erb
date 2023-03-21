@@ -104,20 +104,16 @@
 
     <footer class='fixed-bottom'>
       <% if user_signed_in? %>
-      <div class='bg-light pt-4 pb-2 text-dark text-center'>
-        <p>
-          <%= link_to "お問い合わせ　", contacts_new_path %>
-          <%= link_to "利用規約　", terms_path %>
-          <%= link_to "運営", management_path %>
-        </p>
+      <div class='row bg-light pt-4 pb-2 justify-content-center'>
+        <p class='col-1 text-center'><%= link_to "お問い合わせ", contacts_new_path %></p>
+        <p class='col-1 text-center'><%= link_to "利用規約", terms_path %></p>
+        <p class='col-1 text-center'><%= link_to "運営", management_path %></p>
       </div>
       <% else %>
-      <div class='bg-light p-5 text-dark text-center'>
-        <p>
-          <%= link_to "お問い合わせ　", contacts_new_path %>
-          <%= link_to "利用規約　", terms_path %>
-          <%= link_to "運営", management_path %>
-        </p>
+      <div class='row bg-light p-5 justify-content-center'>
+        <p class='col-1 text-center'><%= link_to "お問い合わせ", contacts_new_path %></p>
+        <p class='col-1 text-center'><%= link_to "利用規約", terms_path %></p>
+        <p class='col-1 text-center'><%= link_to "運営", management_path %></p>
       </div>
       <% end %>
     </footer>
