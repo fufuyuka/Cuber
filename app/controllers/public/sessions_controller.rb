@@ -18,8 +18,11 @@ class Public::SessionsController < Devise::SessionsController
   def reject_user
     @user = User.find_by(email: params[:user][:email])
     if @user && !params[:user][:password].blank?
-      if @user.valid_password?(params[:user][:password]) && (@user.user_status != "active")
+      if @user.valid_password?(params[:user][:password]) && (@user.user_status == "withdrawal")
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+        redirect_to new_user_session_path
+      elsif @user.valid_password?(params[:user][:password]) && (@user.user_status == "ban")
+        flash[:notice] = "こちらのアカウントは利用停止されました。"
         redirect_to new_user_session_path
       else
       end

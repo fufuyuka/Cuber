@@ -9,7 +9,7 @@ class Public::BookmarksController < ApplicationController
   end
   
   def index
-    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:post_id)
+    bookmarks = Bookmark.where(user_id: current_user.id).order(created_at: :desc).pluck(:post_id)
     @bookmarked_posts = Post.find(bookmarks)
   end
   

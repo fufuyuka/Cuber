@@ -5,7 +5,11 @@ class PostComment < ApplicationRecord
   validates :comment, presence: true, length: { in: 1..140 }
   
   #投稿検索
-  def self.looks(word)
-    @comments = PostComment.where("comment LIKE?","%#{word}%")
+  def self.looks(search,word)
+    if search == "perfect_match"
+      @comments = PostComment.where("comment LIKE?","#{word}").order(created_at: :desc)
+    else
+      @comments = PostComment.where("comment LIKE?","%#{word}%").order(created_at: :desc)
+    end
   end
 end

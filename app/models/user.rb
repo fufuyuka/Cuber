@@ -10,8 +10,8 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :post
   has_many :bookmarks, dependent: :destroy
-  # has_many :favorited_users, through: :favorites, source: :post
   has_many :post_comments, dependent: :destroy
 
   has_one_attached :profile_image
@@ -26,8 +26,12 @@ class User < ApplicationRecord
   end
   
   #ユーザー検索
-  def self.looks(word)
-    @users = User.where("name LIKE?","%#{word}%")
+  def self.looks(search,word)
+    if search == "perfect_match"
+    @users = User.where("name LIKE?","#{word}").order(created_at: :desc)
+    else
+    @users = User.where("name LIKE?","%#{word}%").order(created_at: :desc)
+    end
   end
   
   def self.guest
