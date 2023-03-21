@@ -3,8 +3,8 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :puzzle_category, optional: true #nilでも登録できる
   has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user
   has_many :bookmarks, dependent: :destroy
-  # has_many :favorited_users, through: :favorites, source: :user
   has_many :post_comments, dependent: :destroy
   
   validates :statement, presence: true, length: { in: 1..140 }

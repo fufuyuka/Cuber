@@ -24,42 +24,44 @@
     </div>
     
     <div class='col-8'>
-      <table class='teble table-bordered'>
+      <div class='row mb-4'>
+      <table class='teble table-bordered col-10'>
         <tr>
-          <td class='table-secondary'>ユーザー名</td>
-          <td><%= @user.name %></td>
+          <td class='col-3 py-2 table-secondary'>ユーザー名</td>
+          <td class='col-6'><%= @user.name %></td>
         </tr>
         <tr>
-          <td class='table-secondary'>プロフィール</td>
-          <td><%= @user.profiles %></td>
+          <td class='col-3 py-5 table-secondary'>プロフィール</td>
+          <td class='col-6'><%= @user.profiles %></td>
         </tr>
         <tr>
-          <td class='table-secondary'>総いいね数</td>
-          <td><%#= @user.total_favorites %></td>
+          <td class='col-3 py-2 table-secondary'>総いいね数</td>
+          <td class='col-6'><%= Favorite.total_favorites(@user) %></td>
         </tr>
         <tr>
-          <td class='table-secondary'>投稿数</td>
-          <td><%= @user.posts.count %></td>
+          <td class='col-3 py-2 table-secondary'>投稿数</td>
+          <td class='col-6'><%= @user.posts.count %></td>
         </tr>
         <tr>
-          <td class='table-secondary'>コメント数</td>
-          <td><%= @user.post_comments.count %></td>
+          <td class='col-3 py-2 table-secondary'>コメント数</td>
+          <td class='col-6'><%= @user.post_comments.count %></td>
         </tr>
         <tr>
-          <td class='table-secondary'>メールアドレス</td>
-          <td><%= @user.email %></td>
+          <td class='col-3 py-2 table-secondary'>メールアドレス</td>
+          <td class='col-6'><%= @user.email %></td>
         </tr>
         <tr>
-          <td class='table-secondary'>ユーザーステータス</td>
-          <td><%= @user.user_status_i18n %></td>
+          <td class='col-3 py-2 table-secondary'>ユーザーステータス</td>
+          <td class='col-6'><%= @user.user_status_i18n %></td>
         </tr>
         <tr>
-          <td class='table-secondary'>登録日</td>
-          <td><%= @user.created_at.strftime('%Y/%m/%d') %></td>
+          <td class='col-3 py-2 table-secondary'>登録日</td>
+          <td class='col-6'><%= @user.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
       </table>
     </div>
-    
+   </div>
+
   </div>
   
 </div>

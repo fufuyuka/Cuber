@@ -10,30 +10,31 @@
   </div>
     
   <!--検索結果-->
-  <div class='row flex-column m-auto'>
   <% if @posts.length > 0 %>
-    <div class='col my-4'>
+    <div class='row my-4 justify-content-center'>
       <h4 class='text-center'>投稿に"<%= @word %>"を含む検索結果</h4>
     </div>
     <% @posts.each do |post| %>
-    <div class='col-6 my-3 m-auto'>
-      <%= link_to new_user_session_path, class:'text-dark text-decoration-none' do %>
-        <%= image_tag post.user.get_profile_image, size:"50x50" %>
-        <%= post.user.name %>
-        <div class='ml-5'>
-          <%= post.statement %>
+      <div class='row my-3 justify-content-center'>
+        <div class='col-1 border-bottom'>
+        <%= link_to new_user_session_path, class:'text-dark text-decoration-none' do %>
+          <%= image_tag post.user.get_profile_image, size:"50x50" %>
         </div>
-        <div class='d-flex justify-content-end'>
-          <p><i class="far fa-heart text-secondary"></i><%= post.favorites.count %></p>
-          <p><i class="far fa-comment-dots"></i><%= post.post_comments.count %></p>
-          <p><i class="fas fa-cube text-secondary"></i>
+        <div class='col-4 px-1 border-bottom'>
+          <%= post.user.name %>
+          <div class='my-1'>
+            <%= post.statement %>
+          </div>
+          <div class='d-flex justify-content-end pr-1'>
+            <p class='m-2'><i class="far fa-heart text-secondary"></i><%= post.favorites.count %></p>
+            <p class='m-2'><i class="far fa-comment-dots"></i><%= post.post_comments.count %></p>
+            <p class='m-2'><i class="fas fa-cube text-secondary"></i>
+          </div>
+        <% end %>
         </div>
+      </div>
       <% end %>
-    </div>
-    <% end %>
     <% else %>
       <p class="text-center p-4">一致するものはありませんでした</p>
   <% end %>
   </div>
-
-</div>
