@@ -7,7 +7,7 @@ class Public::HomesController < ApplicationController
   
   def search
     @word = params[:word]
-    @posts = Post.looks(params[:word])
+      @posts = Post.looks(params[:search], params[:word])
   end
   
   def new

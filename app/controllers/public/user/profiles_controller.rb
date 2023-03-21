@@ -5,7 +5,7 @@ class Public::User::ProfilesController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
     @favorites_count = Favorite.total_favorites(@user)
   end
 

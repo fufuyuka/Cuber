@@ -18,8 +18,12 @@ class Post < ApplicationRecord
   end
   
   #投稿検索
-  def self.looks(word)
-    @posts = Post.where("statement LIKE?","%#{word}%")
+  def self.looks(search,word)
+    if search == "perfect_match"
+      @posts = Post.where("statement LIKE?","#{word}").order(created_at: :desc)
+    else
+      @posts = Post.where("statement LIKE?","%#{word}%").order(created_at: :desc)
+    end
   end
   
 end

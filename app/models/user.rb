@@ -26,8 +26,12 @@ class User < ApplicationRecord
   end
   
   #ユーザー検索
-  def self.looks(word)
-    @users = User.where("name LIKE?","%#{word}%")
+  def self.looks(search,word)
+    if search == "perfect_match"
+    @users = User.where("name LIKE?","#{word}").order(created_at: :desc)
+    else
+    @users = User.where("name LIKE?","%#{word}%").order(created_at: :desc)
+    end
   end
   
   def self.guest
