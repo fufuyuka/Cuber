@@ -10,7 +10,12 @@ class Admin::ContactsController < ApplicationController
   end
   
   def update
-    @contact.update(contact_params)
+    @contact = Contact.find(params[:id])
+    if @contact.update(contact_params)
+    redirect_to edit_admin_contact_path(@contact)
+    else
+    render "edit"
+    end
   end
   
   private
