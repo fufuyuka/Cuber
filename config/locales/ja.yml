@@ -10,6 +10,13 @@ ja:
         not_supported: "未対応"
         support_now: "対応中"
         finish_suppport: "対応済み"
+  views:
+    pagination:
+      first: "&laquo; New"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "..."
   activerecord:
     attributes:
       user:
