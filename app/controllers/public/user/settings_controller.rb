@@ -1,7 +1,6 @@
 class Public::User::SettingsController < ApplicationController
   before_action :authenticate_user!, except: [:logout]
   before_action :ensure_guest_user, only: [:edit]
-  # before_action :current_user 必要か？URLにidを含んでない
   
   def edit
     flash.clear #サインインなどのフラッシュを一度リセット
@@ -19,7 +18,7 @@ class Public::User::SettingsController < ApplicationController
       #   flash[:notice] = "確認用パスワードが一致しません。"
       #   redirect_to edit_user_settings_path
       # end
-      
+
       current_user.update(email: params[:user][:email])
       flash[:notice] = "メールアドレスを変更しました"
       @user = current_user

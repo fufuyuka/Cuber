@@ -10,7 +10,7 @@ class Public::PostCommentsController < ApplicationController
   
   def index
     @user = User.find(params[:user_id])
-    @comments = @user.post_comments.order(created_at: :desc)
+    @comments = @user.post_comments.order(created_at: :desc).page(params[:page])
   end
   
   def destroy

@@ -10,7 +10,7 @@ class Public::BookmarksController < ApplicationController
   
   def index
     bookmarks = Bookmark.where(user_id: current_user.id).order(created_at: :desc).pluck(:post_id)
-    @bookmarked_posts = Post.find(bookmarks)
+    @bookmarked_posts = Post.where(id: bookmarks).page(params[:page])
   end
   
   def destroy

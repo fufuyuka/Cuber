@@ -74,22 +74,22 @@
             <!--ヘッダー見出し-->
             <ul class='nav navbar-nav m-auto'>
               <li>
-                <%= link_to "TOP", root_path, class:'nav-link text-dark' %>
+                <%= link_to "TOP", root_path, class:'nav-link text-dark mx-3' %>
               </li>
               <li>
-                <%= link_to "Cuberってなに？", root_path, class:'nav-link text-dark' %>
+                <%= link_to "Cuberってなに？", root_path(anchor: 'about'), class:'nav-link text-dark mx-3' %>
               </li>
               <li>
-                <%= link_to "使い方", root_path, class:'nav-link text-dark' %>
+                <%= link_to "使い方", root_path(anchor: 'how'), class:'nav-link text-dark mx-3' %>
               </li>
               <li>
-                <%= link_to "新規登録", new_user_registration_path, class:'nav-link text-dark' %>
+                <%= link_to "新規登録", new_user_registration_path, class:'nav-link text-dark mx-3' %>
               </li>
               <li>
-                <%= link_to "ログイン", new_user_session_path, class:'nav-link text-dark' %>
+                <%= link_to "ログイン", new_user_session_path, class:'nav-link text-dark mx-3' %>
               </li>
               <li>
-                <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class:'nav-link text-dark' %>
+                <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class:'nav-link text-dark mx-3' %>
               </li>
             </ul>
           </div>

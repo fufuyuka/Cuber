@@ -1,5 +1,5 @@
 <!--コメント一覧-->
-<% @comments.each do |comment| %>
+<% comments.each do |comment| %>
 <div class='row my-3'>
   
   <div class='col-1 border-bottom'>
@@ -26,3 +26,4 @@
   
 </div>
 <% end %>
+<%= paginate comments %>

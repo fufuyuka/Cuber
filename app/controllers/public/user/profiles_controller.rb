@@ -1,11 +1,11 @@
 class Public::User::ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
-  # before_action :current_user 必要か？URLにidを含んでない
+  before_action :current_user!, except: [:show]
   
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc)
+    @posts = @user.posts.order(created_at: :desc).page(params[:page])
     @favorites_count = Favorite.total_favorites(@user)
   end
 
