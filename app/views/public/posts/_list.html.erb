@@ -1,5 +1,5 @@
 <!--投稿リスト-->
-<% @posts.each do |post| %>
+<% posts.each do |post| %>
 <div class='row my-3'>
   <div class='col-1 border-bottom'>
   <%= link_to user_path(post.user) do %>
@@ -65,3 +65,4 @@
   </div>
 </div>
 <% end %>
+<%= paginate posts %>

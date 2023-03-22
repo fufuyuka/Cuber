@@ -54,10 +54,10 @@
               <% end %>
             </p>
           </div>
-          
         </div>
       </div>
       <% end %>
+      <%= paginate @posts %>
     </div>
     
     <% elsif  @range == "コメント" && @comments.length > 0 %>
@@ -88,6 +88,7 @@
         </div>
       </div>
       <% end %>
+      <%= paginate @comments %>
     </div>
     
     <% elsif  @range == "ユーザー" && @users.length > 0 %>
@@ -106,7 +107,7 @@
               <strong><%= user.name %></strong>
             </div>
             <div class='col-6 pt-2 pr-3 text-right'>
-              <i class="fas fa-heart text-danger"></i>12<%#= user.favorites.count %>
+              <i class="fas fa-heart text-danger"></i><%= Favorite.total_favorites(user) %>
             </div>
           </div>
           <div class='row mx-2 mb-2'>
@@ -116,6 +117,7 @@
         </div>
       </div>
       <% end %>
+      <%= paginate @users %>
     </div>
     
     <% elsif  @range == "パズルタイプ" && @posts.length > 0 %>
@@ -164,13 +166,13 @@
         </div>
       </div>
       <% end %>
+      <%= paginate @posts %>
     </div>
     
     <% else %>
     <div class='col-6'>
       <p class="text-center p-4">一致するものはありませんでした</p>
     </div>
-    
   <% end %>
   </div>
 </div>

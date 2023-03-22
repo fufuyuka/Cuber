@@ -3,14 +3,14 @@
   <div class='row justify-content-center'>
     <div class='text-center my-5'>
       <h2><strong>Cuber</strong>へ、ようこそ！</h2>
-      <%= link_to root_path, class:'btn btn-outline-secondary my-3' do %>
+      <%= link_to root_path(anchor: 'about'), class:'btn btn-outline-secondary my-3' do %>
         Cuberってなに？<i class="fas fa-arrow-right"></i>
       <% end %>
     </div>
   </div>
 
   <div class='row py-5 justify-content-center'>
-    <div class='col-5 mx-3'>
+    <div class='col-5 mx-3 mb-5'>
       <h6 class='border border-2 py-1 text-center'>人気投稿</h6>
       <% @popular_posts.each do |post| %>
       <div class='row mt-3 mb-2'>
@@ -34,7 +34,7 @@
       <% end %>
     </div>
 
-    <div class='col-5 mx-3'>
+    <div class='col-5 mx-3 mb-5'>
       <h6 class='border border-2 py-1 text-center'>新着投稿</h6>
       <% @new_posts.each do |post| %>
       <div class='row mt-3 mb-2'>
@@ -60,7 +60,7 @@
   </div>
 
 
-  <div class='row justify-content-center pt-5'>
+  <div class='row justify-content-center contents_about' id='about'>
     <div class='col-8'>
       <h3><strong>Cuber</strong></h3><p>キューバー</p>
       <p>当サイトは、立体パズルのコミュニティサイトです。<br>
@@ -71,8 +71,7 @@
       <%= image_tag 'cube.png', size:'150x150' %>
     </div>
   </div>
-  
-  <div class='row justify-content-center my-5'>
+  <div class='row justify-content-center py-5'>
     <div class='col-3 text-center'>
       <table class='table table-bordered'>
         <tr>
@@ -87,7 +86,7 @@
             語ってみたい。<br>
             ↓<br>
             Cuberに投稿してみる<br>
-            <%= link_to "ゲストログイン", users_guest_sign_in_path, class:'btn btn-secondary my-2' %><br>
+            <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class:'btn btn-secondary my-2' %><br>
             ゲストログインでは、ログアウトまたは1日経過すると投稿やコメントがリセットされます。
           </td>
         </tr>
@@ -168,8 +167,7 @@
     </div>
   </div>
 
-
-  <div class='row justify-content-center pt-5'>
+  <div class='row justify-content-center contents_how' id='how'>
     <h6 class='btn btn-outline-secondary my-3'>Cuberの使い方</h6>
   </div>
   <div class='row justify-content-center'>

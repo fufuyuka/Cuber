@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @new_comment = PostComment.new
-    @comments = @post.post_comments
+    @comments = @post.post_comments.page(params[:page])
   end
   
   def create
@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @new_post = Post.new
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.order(created_at: :desc).page(params[:page])
   end
   
   def destroy
