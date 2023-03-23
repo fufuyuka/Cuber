@@ -1,5 +1,5 @@
 <!--ユーザーリスト-->
-<% @users.each do |user| %>
+<% users.each do |user| %>
 <div class='row my-3'>
   <div class='col-1 border-bottom'>
   <%= link_to user_path(user), class:'text-dark text-decoration-none' do %>
@@ -11,7 +11,7 @@
         <strong><%= user.name %></strong>
       </div>
       <div class='col-6 text-right'>
-        <i class="fas fa-heart text-danger"></i>12<%#= user.favorites.count %>
+        <i class="fas fa-heart text-danger"></i><%= Favorite.total_favorites(user) %>
       </div>
     </div>
     <div class='row mx-2 mb-2'>
@@ -21,3 +21,4 @@
   </div>
 </div>
 <% end %>
+<%= paginate users %>
