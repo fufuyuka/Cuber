@@ -8,21 +8,42 @@ class Public::User::SettingsController < ApplicationController
   end
 
   def update
-    #現passwordの一致確認 ※passwordは特殊なので更新が難しい
+    #現passwordの一致確認
     if current_user.valid_password?(params[:user][:password])
-      #新パスワードの入力があり、確認用と一致している場合new_passwordを渡す
-      # if params[:user][:new_password].present? && params[:user][:new_password_confirmation].present?
-      #     current_user.password = params[:user][:new_password]
-      #     current_user.password_confirmation = params[:user][:new_password_confirmation]
-      # else
-      #   flash[:notice] = "確認用パスワードが一致しません。"
-      #   redirect_to edit_user_settings_path
-      # end
-
-      current_user.update(email: params[:user][:email])
-      flash[:notice] = "メールアドレスを変更しました"
-      @user = current_user
-      render :edit #renderなのでflash.clearされない
+      #新パスワードの入力があるか
+      if params[:user][:new_password].present? && params[:user][:new_password_confirmation].present?
+        #確認用と一致しているか
+        if params[:user][:new_password] == params[:user][:new_password_confirmation]
+          current_user.password = params[:user][:new_password]
+          current_user.password_confirmation = params[:user][:new_password_confirmation]
+        else
+          flash[:notice] = "【注意！】新パスワード(確認用)が一致しません。メールアドレスのみ更新しました。"
+          current_user.update(email: params[:user][:email])
+          @user = current_user
+          render :edit #renderなのでflash.clearされない
+          return
+        end
+        
+      else
+        current_user.update(email: params[:user][:email])
+        flash[:notice] = "メールアドレスを更新しました。"
+        @user = current_user
+        render :edit #renderなのでflash.clearされない
+        return
+      end
+      
+      if current_user.email == params[:user][:email]
+        current_user.update(email: params[:user][:email])
+        flash[:notice] = "パスワードを更新しました。ログインページへ移動します。"
+        @user = current_user
+        render :edit #renderなのでflash.clearされない
+      else
+        current_user.update(email: params[:user][:email])
+        flash[:notice] = "メールアドレスとパスワードを更新しました。ログインページへ移動します。"
+        @user = current_user
+        render :edit #renderなのでflash.clearされない
+      end
+      
     else
       flash[:notice] = "現在のパスワードが一致しません。"
       @user = current_user

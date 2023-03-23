@@ -20,16 +20,15 @@
               <td><%= f.password_field :password, autocomplete: "now-password" %></td>
             </tr>
             <tr>
-              <!--<p>(password更新の実装は検討中)</p>-->
-              <!--<td><strong>パスワード変更(変更したい場合のみ入力)</strong></td>-->
+              <td><strong>パスワード変更(変更したい場合のみ入力)</strong></td>
             </tr>
             <tr>
-              <td><%#= f.label :新パスワード %></td>
-              <td><%#= f.password_field :new_password, autocomplete: "new-password" %></td>
+              <td><%= f.label :新パスワード %></td>
+              <td><%= f.password_field :new_password, autocomplete: "new-password" %></td>
             </tr>
             <tr>
-              <td><%#= f.label :"新パスワード(確認用)" %></td>
-              <td><%#= f.password_field :new_password_confirmation, autocomplete: "new-password" %></td>
+              <td><%= f.label :"新パスワード(確認用)" %></td>
+              <td><%= f.password_field :new_password_confirmation, autocomplete: "new-password" %></td>
             </tr>
           </table>
           <%= f.submit "更新", class:'btn btn-success px-5 mb-2' %>

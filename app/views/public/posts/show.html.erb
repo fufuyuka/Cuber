@@ -33,30 +33,14 @@
         
         <!--いいね,コメント,ブックマーク,削除-->
         <div class='d-flex justify-content-end'>
-          <p class='mx-3'>
-          <% if @post.favorited_by?(current_user) %>
-            <%= link_to post_favorites_path(@post), method: :delete do %>
-              <i class="fas fa-heart text-danger"></i><%= @post.favorites.count %>
-            <% end %>
-          <% else %>
-            <%= link_to post_favorites_path(@post), method: :post do %>
-              <i class="far fa-heart text-secondary"></i><%= @post.favorites.count %>
-            <% end %>
-          <% end %>
+          <p id="favorite_buttons_<%= @post.id %>" class='mx-3'>
+            <%= render "public/favorites/favorite_btn", post: @post %>
           </p>
           <p class='mx-3'>
             <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
           </p>
-          <p class='mx-3'>
-          <% if @post.bookmarked_by?(current_user) %>
-            <%= link_to post_bookmarks_path(@post), method: :delete do %>
-              <i class="fas fa-cube text-primary"></i>
-            <% end %>
-          <% else %>
-            <%= link_to post_bookmarks_path(@post), method: :post do %>
-              <i class="fas fa-cube text-secondary"></i>
-            <% end %>
-          <% end %>
+          <p id="bookmark_buttons_<%= @post.id %>" class='mx-3'>
+            <%= render "public/bookmarks/bookmark_btn", post: @post %>
           </p>
           <p class='ml-3'>
           <% if @post.user == current_user %>
