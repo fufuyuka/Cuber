@@ -32,6 +32,15 @@ html {
 .pagination>li>a:hover {        
   border-radius: 20px;    /*角を丸くする*/
 }
+
+ul{
+  padding-left: 25px;
+}
+
+li{
+  list-style: square;
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
