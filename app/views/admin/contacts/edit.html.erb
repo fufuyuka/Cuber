@@ -28,8 +28,7 @@
         </tr>
         <tr>
           <td class='table-secondary'>対応状況</td>
-          <td><%= f.select :supported_status, options_for_select([["未対応","not_supported"], ["対応中","support_now"], ["対応済み","finish_suppport"]]) %>
-          <%#= f.select :supported_status, Contact.supported_status.keys.map {|k| [I18n.t("enums.contact.supported_status.#{k}"), k]}, class:"form-control supported_status" %></td>
+          <td><%= f.select :supported_status, Contact.supported_statuses.keys.map {|k| [I18n.t("enums.contact.supported_status.#{k}"), k]}, class:"form-control supported_status" %></td>
         </tr>
       </table>
     </div>
