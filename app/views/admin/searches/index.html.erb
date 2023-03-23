@@ -67,18 +67,18 @@
       <% @comments.each do |comment| %>
       <div class='row justify-content-center my-3'>
         <div class='col-1 border-bottom'>
-        <%= link_to admin_user_comments_path(comment.user) do %>
+        <%#= link_to admin_post_comments_path(comment.user) do %>
           <%= image_tag comment.user.get_profile_image, size:"50x50" %>
         </div>  
         <div class='col-9 pl-4 border-bottom'>
           <div class='row m-auto'>
             <%= comment.user.name %>
-          <% end %>
+          <%# end %>
           </div>
           <div class='row ml-1 mb-2'>
-          <%= link_to admin_user_comments_path(comment.user), class:'text-dark text-decoration-none' do %> 
+          <%#= link_to admin_user_comments_path(comment.user), class:'text-dark text-decoration-none' do %> 
             <%= comment.comment %>
-          <% end %>
+          <%# end %>
           </div>
           <div class='row d-flex justify-content-end pr-1'>
             <%= link_to post_post_comment_path(comment.post, comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
@@ -120,7 +120,7 @@
       <%= paginate @users %>
     </div>
     
-    <% elsif  @range == "パズルタイプ" && @posts.length > 0 %>
+    <% elsif  @range == "タグ" && @posts.length > 0 %>
     <!--パズルタイプリスト-->
     <div class='col-6'>
       <h5 class='text-center my-3'>投稿に"<%= @word %>"を含む検索結果</h5>

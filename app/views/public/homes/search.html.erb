@@ -10,7 +10,7 @@
   </div>
     
   <!--検索結果-->
-  <% if @posts.length > 0 %>
+  <% if @posts.present? %>
     <div class='row my-4 justify-content-center'>
       <h4 class='text-center'>投稿に"<%= @word %>"を含む検索結果</h4>
     </div>

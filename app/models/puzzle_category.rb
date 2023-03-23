@@ -6,7 +6,7 @@ class PuzzleCategory < ApplicationRecord
   #投稿検索
   def self.looks(search,word)
     if search == "perfect_match"
-      category_ids = PuzzleCategory.where("category LIKE ?","#{word}").ids
+      category_ids = PuzzleCategory.where(category: word).ids
       @posts = Post.where(puzzle_category_id: category_ids).order(created_at: :desc)
     else
       category_ids = PuzzleCategory.where("category LIKE ?","%#{word}%").ids
