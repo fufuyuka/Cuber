@@ -1,38 +1,41 @@
-<div class='container p-2'>
-  <div class='row justify-content-center my-2'>
+<div class='container my-4'>
+  <div class='row justify-content-center py-2'>
     <h4>お問い合わせ内容</h4>
   </div>
-
+  <%= form_with model: @contact, url: admin_contact_path, method: :patch, local:true do |f| %>
   <div class='row justify-content-center'>
-    <table class='table table-bordered'>
-      <tr>
-        <td class='table-secondary'>日付</td>
-        <td><%= @contact.created_at.strftime('%Y/%m/%d') %></td>
-      </tr>
-      <tr>
-        <td class='table-secondary'>氏名</td>
-        <td><%= @contact.name %></td>
-      </tr>
-      <tr>
-        <td class='table-secondary'>メールアドレス</td>
-        <td><%= @contact.email %></td>
-      </tr>
-      <tr>
-        <td class='table-secondary'>お問い合わせ内容</td>
-        <td><%= @contact.contact_detail %></td>
-      </tr>
-      <tr>
-        <td class='table-secondary'>メモ</td>
-        <td><%= @contact.memo %></td>
-      </tr>
-      <tr>
-        <td class='table-secondary'>対応状況</td>
-        <td><%= @contact.supported_status_i18n %></td>
-      </tr>
-    </table>
+    <div class='col-8'>
+      <table class='table table-bordered'>
+        <tr>
+          <td class='col-3 table-secondary'>日付</td>
+          <td><%= @contact.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <td class='table-secondary'>氏名</td>
+          <td><%= @contact.name %></td>
+        </tr>
+        <tr>
+          <td class='table-secondary'>メールアドレス</td>
+          <td><%= @contact.email %></td>
+        </tr>
+        <tr>
+          <td class='table-secondary'>お問い合わせ内容</td>
+          <td><%= @contact.contact_detail %></td>
+        </tr>
+        <tr>
+          <td class='table-secondary'>メモ</td>
+          <td><%= f.text_area :memo, class:"form-control memo", size:'20x10' %></td>
+        </tr>
+        <tr>
+          <td class='table-secondary'>対応状況</td>
+          <td><%= f.select :supported_status, options_for_select([["未対応","not_supported"], ["対応中","support_now"], ["対応済み","finish_suppport"]]) %>
+          <%#= f.select :supported_status, Contact.supported_status.keys.map {|k| [I18n.t("enums.contact.supported_status.#{k}"), k]}, class:"form-control supported_status" %></td>
+        </tr>
+      </table>
+    </div>
   </div>
-    
   <div class='row justify-content-center my-2'>
-    <h4>更新　admin_contact_path</h4>
+    <%= f.submit "更新", data: { confirm: "更新します。" }, class:'btn btn-info px-5 mb-2' %>
   </div>
+  <% end %>
 </div>
