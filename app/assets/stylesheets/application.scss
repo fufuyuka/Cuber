@@ -1,19 +1,7 @@
+@import 'public/homes';
+
 main {
   margin-bottom: 150px;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-.contents_about {
-    padding-top: 180px;
-    margin-top:-180px;
-}
-
-.contents_how {
-    padding-top: 140px;
-    margin-top:-140px;
 }
 
 /*ページネーション自体のデザイン*/
@@ -31,14 +19,6 @@ html {
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {        
   border-radius: 20px;    /*角を丸くする*/
-}
-
-ul{
-  padding-left: 25px;
-}
-
-li{
-  list-style: square;
 }
 
 /*
