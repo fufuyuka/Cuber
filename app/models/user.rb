@@ -20,6 +20,9 @@ class User < ApplicationRecord
     #短辺を基準に100x100にリサイズ後、中心から100x100に切り抜き
     #profile_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" )
   end
+  # has_many_attached :images do |attachable|
+  #   attachable.variant :thumb, resize_to_limit: [100, 100]
+  # end
   
   enum user_status: { active: 0, withdrawal: 1, ban: 2 }
   #user_statusが有効の場合のみログインできる(controllerですり抜けた場合や複数ブラウザでしようとしたとき)

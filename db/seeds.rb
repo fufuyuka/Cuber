@@ -7,3 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require './db/admin.rb'
+
+require './db/sample_data.rb'
