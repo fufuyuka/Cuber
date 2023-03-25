@@ -160,3 +160,9 @@ Bookmark.create!(
     {post_id: posts[25].id, user_id: users[10].id }
   ]
 )
+
+Contact.create!(
+  [
+    {name: 'サンプルお問い合わせ', email: 'sample@test.com', contact_detail: '(ここにお問い合わせの内容が表示されます)', memo: '（お問い合わせの状況ややり取りのメモを書くなどに使用する）' }
+  ]
+)
