@@ -8,4 +8,4 @@
 
 require './db/admin.rb'
 
-require './db/sample.rb'
+require './db/sample_data.rb'
