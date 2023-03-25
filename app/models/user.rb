@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'user_default.jpg'
+    #短辺を基準に100x100にリサイズ後、中心から100x100に切り抜き
+    #profile_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" )
   end
   
   enum user_status: { active: 0, withdrawal: 1, ban: 2 }
