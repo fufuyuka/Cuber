@@ -23,13 +23,14 @@
 # Rails.rootを使用するために必要
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 # cronを実行する環境変数
-rails_env = Rails.env.to_sym
-# cronを実行する環境変数をセット
-set :environment, rails_env
+# rails_env = Rails.env.to_sym
+# 実行環境の指定
+set :environment, :production  # 本番環境に変更
 # cronのログ
 set :output, 'log/cron.log'
-#1時間に一度メゾッドが実行される
-every 1.hour do
+#2分に一度メゾッドが実行される
+#1.hour
+every 2.minute do
   begin
     runner "Batch::DataReset.data_reset"
     #runner "Batch::DataReset.logout"
