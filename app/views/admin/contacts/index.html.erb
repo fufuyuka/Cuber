@@ -3,7 +3,8 @@
     <h4>お問い合わせ</h4>
   </div>
 
-  <div class='row justify-content-center'>
+  <div class='row justify-content-center table-responsive'>
+    <%= paginate @contacts %>
     <table class='table table-bordered'>
       <thead class='table-secondary text-center'>
         <tr>
@@ -38,7 +39,6 @@
           </td>
         </tr>
         <% end %>
-        <%= paginate @contacts %>
       </tbody>
     </table>
   </div>

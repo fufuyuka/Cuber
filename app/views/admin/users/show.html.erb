@@ -7,61 +7,47 @@
   </div>
   
   <div class='row justify-content-center'>
-    <div class='col-3 text-center'>
-    <%= link_to admin_user_path(@user) do %>
-      <%= image_tag @user.get_profile_image, size:'100x100' %>
-      <div class='my-2'>
-        <%= @user.name %>
-      </div>
-    <% end %>
-
-      <div class='my-3'>
-        <%= link_to "投稿一覧", admin_posts_path(@user) %>
-      </div>
-      <div class='mb-5'>
-        <%= link_to "コメント一覧", admin_post_comments_path(@user) %>
-      </div>
-    </div>
+    <!--詳細・投稿・コメントの切り替え-->
+    <%= render 'admin/users/info', user: @user %>
     
     <div class='col-8'>
       <div class='row mb-4'>
-      <table class='teble table-bordered col-10'>
-        <tr>
-          <td class='col-3 py-2 table-secondary'>ユーザー名</td>
-          <td class='col-6'><%= @user.name %></td>
-        </tr>
-        <tr>
-          <td class='col-3 py-5 table-secondary'>プロフィール</td>
-          <td class='col-6'><%= @user.profiles %></td>
-        </tr>
-        <tr>
-          <td class='col-3 py-2 table-secondary'>総いいね数</td>
-          <td class='col-6'><%= Favorite.total_favorites(@user) %></td>
-        </tr>
-        <tr>
-          <td class='col-3 py-2 table-secondary'>投稿数</td>
-          <td class='col-6'><%= @user.posts.count %></td>
-        </tr>
-        <tr>
-          <td class='col-3 py-2 table-secondary'>コメント数</td>
-          <td class='col-6'><%= @user.post_comments.count %></td>
-        </tr>
-        <tr>
-          <td class='col-3 py-2 table-secondary'>メールアドレス</td>
-          <td class='col-6'><%= @user.email %></td>
-        </tr>
-        <tr>
-          <td class='col-3 py-2 table-secondary'>ユーザーステータス</td>
-          <td class='col-6'><%= @user.user_status_i18n %></td>
-        </tr>
-        <tr>
-          <td class='col-3 py-2 table-secondary'>登録日</td>
-          <td class='col-6'><%= @user.created_at.strftime('%Y/%m/%d') %></td>
-        </tr>
-      </table>
+        <table class='teble table-bordered col-10'>
+          <tr>
+            <td class='col-3 py-2 table-secondary'>ユーザー名</td>
+            <td class='col-6'><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td class='col-3 py-5 table-secondary'>プロフィール</td>
+            <td class='col-6'><%= @user.profiles %></td>
+          </tr>
+          <tr>
+            <td class='col-3 py-2 table-secondary'>総いいね数</td>
+            <td class='col-6'><%= Favorite.total_favorites(@user) %></td>
+          </tr>
+          <tr>
+            <td class='col-3 py-2 table-secondary'>投稿数</td>
+            <td class='col-6'><%= @user.posts.count %></td>
+          </tr>
+          <tr>
+            <td class='col-3 py-2 table-secondary'>コメント数</td>
+            <td class='col-6'><%= @user.post_comments.count %></td>
+          </tr>
+          <tr>
+            <td class='col-3 py-2 table-secondary'>メールアドレス</td>
+            <td class='col-6'><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td class='col-3 py-2 table-secondary'>ユーザーステータス</td>
+            <td class='col-6'><%= @user.user_status_i18n %></td>
+          </tr>
+          <tr>
+            <td class='col-3 py-2 table-secondary'>登録日</td>
+            <td class='col-6'><%= @user.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        </table>
+      </div>
     </div>
-   </div>
 
   </div>
-  
 </div>
