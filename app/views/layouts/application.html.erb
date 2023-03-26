@@ -17,7 +17,7 @@
     <header class='sticky-top'>
       <!--ユーザーがログインしているとき-->
       <% if user_signed_in? %>
-      <nav class='navbar navbar-expand-md bg-light'>
+      <nav class='navbar navbar-expand-sm bg-light'>
         <%= link_to posts_path, class:'nav-link' do %>
           <%= image_tag 'Cuber_logo.png', size:'65x65' %>
         <% end %>
@@ -35,7 +35,7 @@
 
       <!--管理者がログインしているとき-->
       <% elsif admin_signed_in? %>
-      <nav class='navbar navbar-expand-md bg-light'>
+      <nav class='navbar navbar-expand-sm bg-light'>
           <%= image_tag 'Cuber_logo.png', size:'80x80' %>
           <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5'>
             <!--ヘッダー見出し-->
@@ -58,12 +58,17 @@
 
       <!--ログインしていないとき-->
       <% else %>
-      <nav class='navbar navbar-expand-md bg-light'>
-          <%= link_to root_path, class:'nav-link' do %>
+      <nav class='navbar navbar-expand-md navbar-light bg-light'>
+          <%= link_to root_path, class:'navbar-brand nav-link' do %>
           <%= image_tag 'Cuber_logo.png', size:'100x100' %>
         <% end %>
+        
+        <!-- ハンバーガーメニュー -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
   
-          <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5'>
+          <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5' id="navbarSupportedContent">
             <!--検索フォーム-->
             <div>
             <%= form_with url: top_searches_path, local: true, method: :get do |f| %>
@@ -73,22 +78,22 @@
             </div>
             <!--ヘッダー見出し-->
             <ul class='nav navbar-nav m-auto'>
-              <li>
+              <li class='nav-item'>
                 <%= link_to "TOP", root_path, class:'nav-link text-dark mx-3' %>
               </li>
-              <li>
+              <li class='nav-item'>
                 <%= link_to "Cuberってなに？", root_path(anchor: 'about'), class:'nav-link text-dark mx-3' %>
               </li>
-              <li>
+              <li class='nav-item'>
                 <%= link_to "使い方", root_path(anchor: 'how'), class:'nav-link text-dark mx-3' %>
               </li>
-              <li>
+              <li class='nav-item'>
                 <%= link_to "新規登録", new_user_registration_path, class:'nav-link text-dark mx-3' %>
               </li>
-              <li>
+              <li class='nav-item'>
                 <%= link_to "ログイン", new_user_session_path, class:'nav-link text-dark mx-3' %>
               </li>
-              <li>
+              <li class='nav-item'>
                 <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class:'nav-link text-dark mx-3' %>
               </li>
             </ul>
@@ -104,16 +109,16 @@
 
     <footer class='fixed-bottom'>
       <% if user_signed_in? %>
-      <div class='row bg-light pt-4 pb-2 justify-content-center'>
-        <p class='col-1 text-center'><%= link_to "お問い合わせ", contacts_new_path %></p>
-        <p class='col-1 text-center'><%= link_to "利用規約", terms_path %></p>
-        <p class='col-1 text-center'><%= link_to "運営", management_path %></p>
+      <div class='row bg-light py-sm-3 py-lg-4 justify-content-center'>
+        <p class='col-sm-3 col-lg-1 text-center'><%= link_to "お問い合わせ", contacts_new_path %></p>
+        <p class='col-sm-3 col-lg-1 text-center'><%= link_to "利用規約", terms_path %></p>
+        <p class='col-sm-3 col-lg-1 text-center'><%= link_to "運営", management_path %></p>
       </div>
       <% else %>
-      <div class='row bg-light p-5 justify-content-center'>
-        <p class='col-1 text-center'><%= link_to "お問い合わせ", contacts_new_path %></p>
-        <p class='col-1 text-center'><%= link_to "利用規約", terms_path %></p>
-        <p class='col-1 text-center'><%= link_to "運営", management_path %></p>
+      <div class='row bg-light py-sm-4 py-lg-5 justify-content-center'>
+        <p class='col-sm-3 col-lg-1 text-center'><%= link_to "お問い合わせ", contacts_new_path %></p>
+        <p class='col-sm-3 col-lg-1 text-center'><%= link_to "利用規約", terms_path %></p>
+        <p class='col-sm-3 col-lg-1 text-center'><%= link_to "運営", management_path %></p>
       </div>
       <% end %>
     </footer>
