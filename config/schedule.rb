@@ -28,9 +28,8 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 set :environment, :production  # 本番環境に変更
 # cronのログ
 set :output, 'log/cron.log'
-#2分に一度メゾッドが実行される
-#1.hour
-every 2.minute do
+#1時間に一度メゾッドが実行される
+every 1.hour do
   begin
     runner "Batch::DataReset.data_reset"
     #runner "Batch::DataReset.logout"
