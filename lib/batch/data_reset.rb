@@ -8,8 +8,8 @@ class Batch::DataReset
     user.bookmarks.destroy_all
   end
   
-  def self.logout
-    user = User.find(1)
-    sign_out(user)
-  end
+  # def self.logout
+  #   user = User.find(1)
+  #   session[1] = nil
+  # end
 end

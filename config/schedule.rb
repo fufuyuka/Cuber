@@ -28,11 +28,11 @@ rails_env = Rails.env.to_sym
 set :environment, rails_env
 # cronのログ
 set :output, 'log/cron.log'
-#2分に一度メゾッドが実行される
-every 2.minute do
+#1時間に一度メゾッドが実行される
+every 1.hour do
   begin
     runner "Batch::DataReset.data_reset"
-    runner "Batch::DataReset.logout"
+    #runner "Batch::DataReset.logout"
   rescue => e
     Rails.logger.error("aborted rails runner")
     raise e
