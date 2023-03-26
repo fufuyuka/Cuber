@@ -12,5 +12,5 @@ class Favorite < ApplicationRecord
     end
     favorites_count
   end
-  
+
 end

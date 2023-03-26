@@ -1,5 +1,4 @@
 class Post < ApplicationRecord
-
   belongs_to :user
   belongs_to :puzzle_category, optional: true #nilでも登録できる
   has_many :favorites, dependent: :destroy
@@ -9,6 +8,7 @@ class Post < ApplicationRecord
   
   validates :statement, presence: true, length: { in: 1..140 }
 
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
@@ -16,7 +16,8 @@ class Post < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.exists?(user_id: user.id)
   end
-  
+
+
   #投稿検索
   def self.looks(search,word)
     if search == "perfect_match"
@@ -25,5 +26,5 @@ class Post < ApplicationRecord
       @posts = Post.where("statement LIKE?","%#{word}%").order(created_at: :desc)
     end
   end
-  
+
 end
