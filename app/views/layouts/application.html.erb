@@ -35,9 +35,14 @@
 
       <!--管理者がログインしているとき-->
       <% elsif admin_signed_in? %>
-      <nav class='navbar navbar-expand-sm bg-light'>
-          <%= image_tag 'Cuber_logo.png', size:'80x80' %>
-          <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5'>
+      <nav class='navbar navbar-expand-md navbar-light bg-light'>
+        <%= image_tag 'Cuber_logo.png', size:'80x80' %>
+        <!-- ハンバーガーメニュー -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+          <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5' id='navbarSupportedContent'>
             <!--ヘッダー見出し-->
             <ul class='nav navbar-nav m-auto pt-4'>
               <li>
@@ -62,12 +67,11 @@
           <%= link_to root_path, class:'navbar-brand nav-link' do %>
           <%= image_tag 'Cuber_logo.png', size:'100x100' %>
         <% end %>
-        
         <!-- ハンバーガーメニュー -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-  
+
           <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5' id="navbarSupportedContent">
             <!--検索フォーム-->
             <div>
