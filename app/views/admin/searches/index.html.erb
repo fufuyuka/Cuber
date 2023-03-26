@@ -9,55 +9,13 @@
   <% end %>
   </div>
   
-<!--検索結果-->
+  <!--検索結果-->
   <div class='row justify-content-center'>
   <% if @range == "投稿" && @posts.length > 0 %>
     <!--投稿リスト-->
     <div class='col-6'>
       <h5 class='text-center my-3'>投稿に"<%= @word %>"を含む検索結果</h5>
-      <% @posts.each do |post| %>
-      <div class='row justify-content-center my-3'>
-        <div class='col-1 border-bottom'>
-        <%= link_to admin_user_path(post.user) do %>
-          <%= image_tag post.user.get_profile_image, size:"50x50" %>
-        </div>  
-        <div class='col-9 border-bottom'>
-          <div class='row m-auto'>
-            <div class='col-6 text-left'>
-            <%= post.user.name %>
-        <% end %>
-            </div>
-            <div class='col-6 text-right'>
-            <%= link_to admin_user_path(post.user) do %>
-              <% if post.puzzle_category_id.present? %>
-                <%= post.puzzle_category.category %>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
-          <div class='row ml-3 mb-2'>
-          <%= link_to admin_user_path(post.user), class:'text-dark text-decoration-none' do %>
-            <%= post.statement %>
-          <% end %>
-          </div>
-          <!--いいね,コメント,ブックマーク,削除-->
-          <div class='row d-flex justify-content-end'>
-            <p class='mx-3'>
-              <i class="fas fa-heart text-danger"></i><%= post.favorites.count %>
-            </p>
-            <p class='mx-3'>
-              <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
-            </p>
-            <p class='ml-3'>
-              <%= link_to post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-                <i class="fas fa-times text-dark"></i>
-              <% end %>
-            </p>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <%= paginate @posts %>
+      <%= render 'admin/searches/posts_list', posts: @posts %>
     </div>
     
     <% elsif  @range == "コメント" && @comments.length > 0 %>
@@ -67,21 +25,21 @@
       <% @comments.each do |comment| %>
       <div class='row justify-content-center my-3'>
         <div class='col-1 border-bottom'>
-        <%#= link_to admin_post_comments_path(comment.user) do %>
+        <%= link_to admin_user_path(comment.user) do %>
           <%= image_tag comment.user.get_profile_image, size:"50x50" %>
         </div>  
         <div class='col-9 pl-4 border-bottom'>
           <div class='row m-auto'>
             <%= comment.user.name %>
-          <%# end %>
+          <% end %>
           </div>
           <div class='row ml-1 mb-2'>
-          <%#= link_to admin_user_comments_path(comment.user), class:'text-dark text-decoration-none' do %> 
+          <%= link_to admin_post_comments_path(comment.user), class:'text-dark text-decoration-none' do %> 
             <%= comment.comment %>
-          <%# end %>
+          <% end %>
           </div>
           <div class='row d-flex justify-content-end pr-1'>
-            <%= link_to post_post_comment_path(comment.post, comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
+            <%= link_to admin_post_comment_path(comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
               <p><i class="fas fa-times text-dark"></i></p>
             <% end %>
           </div>
@@ -124,49 +82,7 @@
     <!--パズルタイプリスト-->
     <div class='col-6'>
       <h5 class='text-center my-3'>投稿に"<%= @word %>"を含む検索結果</h5>
-      <% @posts.each do |post| %>
-      <div class='row justify-content-center my-3'>
-        <div class='col-1 border-bottom'>
-        <%= link_to admin_user_path(post.user) do %>
-          <%= image_tag post.user.get_profile_image, size:"50x50" %>
-        </div>  
-        <div class='col-9 border-bottom'>
-          <div class='row m-auto'>
-            <div class='col-6 text-left'>
-            <%= post.user.name %>
-        <% end %>
-            </div>
-            <div class='col-6 text-right'>
-            <%= link_to user_path(post.user) do %>
-              <% if post.puzzle_category_id.present? %>
-                <%= post.puzzle_category.category %>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
-          <div class='row ml-3 mb-2'>
-          <%= link_to admin_user_path(post.user), class:'text-dark text-decoration-none' do %>
-            <%= post.statement %>
-          <% end %>
-          </div>
-          <!--いいね,コメント,ブックマーク,削除-->
-          <div class='row d-flex justify-content-end'>
-            <p class='mx-3'>
-              <i class="fas fa-heart text-danger"></i><%= post.favorites.count %>
-            </p>
-            <p class='mx-3'>
-              <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
-            </p>
-            <p class='ml-3'>
-              <%= link_to post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-                <i class="fas fa-times text-dark"></i>
-              <% end %>
-            </p>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <%= paginate @posts %>
+      <%= render 'admin/searches/posts_list', posts: @posts %>
     </div>
     
     <% else %>
@@ -176,4 +92,3 @@
   <% end %>
   </div>
 </div>
-

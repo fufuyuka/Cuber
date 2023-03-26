@@ -1,6 +1,5 @@
 class Public::User::SettingsController < ApplicationController
   before_action :authenticate_user!, except: [:logout]
-  before_action :ensure_guest_user, only: [:edit]
   
   def edit
     flash.clear #サインインなどのフラッシュを一度リセット

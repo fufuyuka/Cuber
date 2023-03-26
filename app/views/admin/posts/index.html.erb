@@ -7,21 +7,8 @@
   </div>
   
   <div class='row justify-content-center'>
-    <div class='col-3 text-center'>
-    <%= link_to admin_user_path(@user) do %>
-      <%= image_tag @user.get_profile_image, size:'100x100' %>
-      <div class='my-2'>
-        <%= @user.name %>
-      </div>
-    <% end %>
-
-      <div class='my-3'>
-        <%= link_to "投稿一覧", admin_posts_path(@user) %>
-      </div>
-      <div class='mb-5'>
-        <%= link_to "コメント一覧", admin_post_comments_path(@user) %>
-      </div>
-    </div>
+    <!--詳細・投稿・コメントの切り替え-->
+    <%= render 'admin/users/info', user: @user %>
     
     <div class='col-8'>
       <!--投稿リスト-->
@@ -63,6 +50,6 @@
       <% end %>
       <%= paginate @posts %>
     </div>
+    
   </div>
-  
 </div>
