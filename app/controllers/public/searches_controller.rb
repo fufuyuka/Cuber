@@ -12,4 +12,5 @@ class Public::SearchesController < ApplicationController
       @posts = PuzzleCategory.looks(params[:search], params[:word]).page(params[:page])
     end
   end
+  
 end

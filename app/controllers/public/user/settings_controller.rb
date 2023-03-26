@@ -60,17 +60,9 @@ class Public::User::SettingsController < ApplicationController
     render :withdrawal #退会完了画面へ
   end
 
-
   private
 
   def user_params
     params.require(:user).permit(:email,:password)
-  end
-  
-  def ensure_guest_user
-    @user = current_user
-    if @user.email == "guest@example.com"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはユーザー設定画面へ遷移できません。'
-    end
   end
 end
