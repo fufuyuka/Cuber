@@ -4,15 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, length: { in: 2..20 }
-  validates :email, presence: true, uniqueness: true #空白でない＆一意性
-  validates :profiles, length: { maximum: 140 }
-
   has_many :posts
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :post
   has_many :bookmarks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+
+  validates :name, length: { in: 2..20 }
+  validates :email, presence: true, uniqueness: true #空白でない＆一意性
+  validates :profiles, length: { maximum: 140 }
 
   has_one_attached :profile_image
   def get_profile_image
@@ -20,13 +20,10 @@ class User < ApplicationRecord
     #短辺を基準に100x100にリサイズ後、中心から100x100に切り抜き
     #profile_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" )
   end
-  # has_many_attached :images do |attachable|
-  #   attachable.variant :thumb, resize_to_limit: [100, 100]
-  # end
 
-  
   enum user_status: { active: 0, withdrawal: 1, ban: 2 }
-  #user_statusが有効の場合のみログインできる(controllerですり抜けた場合や複数ブラウザでしようとしたとき)
+  
+  #user_statusが有効の場合のみログインできる(controllerですり抜けた場合や複数ブラウザでしようとしたときにも対応)
   def active_for_authentication?
     super && (user_status == "active" )
   end
@@ -41,9 +38,10 @@ class User < ApplicationRecord
   end
   
   def self.guest
-    find_or_create_by!(name: 'ゲストユーザー' ,email: 'guest@example.com') do |user|
+    find_by!(name: 'ゲストユーザー' ,email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
   end
+  
 end

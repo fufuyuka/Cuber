@@ -13,4 +13,5 @@ class PuzzleCategory < ApplicationRecord
       @posts = Post.where(puzzle_category_id: category_ids).order(created_at: :desc)
     end
   end
+
 end

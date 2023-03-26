@@ -12,4 +12,5 @@ class PostComment < ApplicationRecord
       @comments = PostComment.where("comment LIKE?","%#{word}%").order(created_at: :desc)
     end
   end
+
 end
