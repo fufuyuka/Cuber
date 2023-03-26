@@ -31,7 +31,6 @@ class Public::SessionsController < Devise::SessionsController
     end
   end
   
-  
   # GET /resource/sign_in
   # def new
   #   super
@@ -46,8 +45,6 @@ class Public::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-
-  # protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

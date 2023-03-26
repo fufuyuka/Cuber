@@ -18,7 +18,7 @@ devise_for :users, skip: [:passwords], controllers: {
       resource :profiles, only: [:edit,:update]
       get "/logout" => "settings#logout"
       patch "/withdrawal" => "settings#withdrawal"
-      get "/withdrawal" => redirect("/")
+      get "/withdrawal" => redirect("/") #退会直後のみ
       resource :settings, only: [:edit,:update]
       get "/settings" => "settings#edit"
     end
@@ -39,7 +39,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 }
 
   namespace :admin do
-    get "/sign_out" => "homes#logout" #管理者のログアウト完了ページ
+    get "/logout" => "homes#logout" #管理者のログアウト完了ページ
     root to: "contacts#index"
     resources :contacts, only: [:edit, :update]
     get "/:user_id/posts" => "posts#index", as: 'posts'

@@ -14,7 +14,6 @@ class Public::PostsController < ApplicationController
     if params[:post][:category].present? && @new_post.valid?
       @new_post.puzzle_category = PuzzleCategory.find_or_create_by(category: params[:post][:category])
     end
-    
     # 保存に失敗したら
     unless @new_post.save
       @posts = Post.all
@@ -32,7 +31,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-      redirect_to posts_path #遷移元によって遷移先を変えたい
+      redirect_to posts_path
   end
   
   private

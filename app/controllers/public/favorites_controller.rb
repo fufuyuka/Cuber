@@ -1,7 +1,6 @@
 class Public::FavoritesController < ApplicationController
   before_action :authenticate_user!
-  
-#renderやredirect_toがない場合/アクション名.js.erbを参照する(非同期通信)
+  #renderやredirect_toがない場合/アクション名.js.erbを参照する(非同期通信)
   def create
     @post = Post.find(params[:post_id])
     favirite = current_user.favorites.new(post_id: @post.id)
