@@ -16,22 +16,51 @@ class Public::User::SettingsController < ApplicationController
           current_user.password = params[:user][:new_password]
           current_user.password_confirmation = params[:user][:new_password_confirmation]
         else
-          flash[:notice] = "【注意！】新パスワード(確認用)が一致しません。メールアドレスのみ更新しました。"
+          
+          if current_user.email == params[:user][:email]
+            current_user.update(email: params[:user][:email])
+            flash[:notice] = "【注意！】新パスワード(確認用)が一致しません。"
+            @user = current_user
+            render :edit #renderなのでflash.clearされない
+            return
+          else
+            current_user.update(email: params[:user][:email])
+            flash[:notice] = "【注意！】新パスワード(確認用)が一致しません。メールアドレスのみ更新しました。"
+            @user = current_user
+            render :edit #renderなのでflash.clearされない
+            return
+          end
+        end
+        
+      elsif params[:user][:new_password].present? || params[:user][:new_password_confirmation].present?
+        if current_user.email != params[:user][:email]
           current_user.update(email: params[:user][:email])
+          flash[:notice] = "【注意！】新パスワード(または確認用)の入力がありません。メールアドレスのみ更新しました。"
+          @user = current_user
+          render :edit #renderなのでflash.clearされない
+          return
+        else
+          flash[:notice] = "【注意！】新パスワード(または確認用)の入力がありません。"
           @user = current_user
           render :edit #renderなのでflash.clearされない
           return
         end
-        
       else
-        current_user.update(email: params[:user][:email])
-        flash[:notice] = "メールアドレスを更新しました。"
-        @user = current_user
-        render :edit #renderなのでflash.clearされない
-        return
+        if current_user.email != params[:user][:email]
+          current_user.update(email: params[:user][:email])
+          flash[:notice] = "メールアドレスを更新しました。"
+          @user = current_user
+          render :edit 
+          return
+        else
+          flash[:notice] = "変更はありませんでした。"
+          @user = current_user
+          render :edit 
+          return
+        end
       end
       
-      if current_user.email == params[:user][:email]
+      if current_user.email == params[:user][:email] #新パスワードが6文字以下のときメッセージが合わない(パス変できてない)
         current_user.update(email: params[:user][:email])
         flash[:notice] = "パスワードを更新しました。ログインページへ移動します。"
         @user = current_user
@@ -48,6 +77,7 @@ class Public::User::SettingsController < ApplicationController
       @user = current_user
       render :edit
     end
+    
   end
   
   def logout

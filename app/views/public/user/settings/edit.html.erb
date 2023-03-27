@@ -24,11 +24,11 @@
             </tr>
             <tr>
               <td><%= f.label :新パスワード %></td>
-              <td><%= f.password_field :new_password, autocomplete: "new-password" %></td>
+              <td><%= f.password_field :new_password, placeholder:"6文字以上", autocomplete: "new-password" %></td>
             </tr>
             <tr>
               <td><%= f.label :"新パスワード(確認用)" %></td>
-              <td><%= f.password_field :new_password_confirmation, autocomplete: "new-password" %></td>
+              <td><%= f.password_field :new_password_confirmation, placeholder:"6文字以上", autocomplete: "new-password" %></td>
             </tr>
           </table>
           <%= f.submit "更新", class:'btn btn-success px-5 mb-2' %>
