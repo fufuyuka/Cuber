@@ -12,11 +12,11 @@
         <div class='row justify-content-center'>
           <table class="table table-borderless">
             <tr>
-              <td><%= f.label :メールアドレス %></td>
+              <td><%= f.label :メールアドレス（必須） %></td>
               <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
             </tr>
             <tr>
-              <td><%= f.label :現在のパスワード %></td>
+              <td><%= f.label :現在のパスワード（必須） %></td>
               <td><%= f.password_field :password, autocomplete: "now-password" %></td>
             </tr>
             <tr>
