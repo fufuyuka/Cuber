@@ -19,30 +19,29 @@
       <!--検索結果-->
       <div>
       <% if @range == "投稿" && @posts.length > 0 %>
-      <div class='row my-4'>
-        <h5 class='col-9 text-center'>投稿に"<%= @word %>"を含む検索結果</h5>
-      </div>
+        <div class='row my-4'>
+          <h5 class='col-9 text-center'>投稿に"<%= @word %>"を含む検索結果</h5>
+        </div>
         <%= render 'public/posts/list', posts: @posts %>
       
-        <% elsif @range == "ユーザー" && @users.length > 0 %>
-          <div class='row my-4'>
-            <h5 class='col-9 text-center'>ユーザー名に"<%= @word %>"を含む検索結果</h5>
-          </div>
-          <%= render 'public/user/index', users: @users %>
-          
-          <% elsif @range == "タグ" && @posts.length > 0 %>
-          <div class='row my-4'>
-            <h5 class='col-9 text-center'>タグに"<%= @word %>"を含む検索結果</h5>
-          </div>
-          <%= render 'public/posts/list', posts: @posts %>
+      <% elsif @range == "ユーザー" && @users.length > 0 %>
+        <div class='row my-4'>
+          <h5 class='col-9 text-center'>ユーザー名に"<%= @word %>"を含む検索結果</h5>
+        </div>
+        <%= render 'public/user/index', users: @users %>
         
-        <% else %>
-          <div class='row my-4'>
-            <h6 class='col-9 text-center'>一致するものはありませんでした</h6>
-          </div>
+        <% elsif @range == "タグ" && @posts.length > 0 %>
+        <div class='row my-4'>
+          <h5 class='col-9 text-center'>タグに"<%= @word %>"を含む検索結果</h5>
+        </div>
+        <%= render 'public/posts/list', posts: @posts %>
+      
+      <% else %>
+        <div class='row my-4'>
+          <h6 class='col-9 text-center'>一致するものはありませんでした</h6>
+        </div>
       <% end %>
       </div>
-      
     </div>
     
   </div>

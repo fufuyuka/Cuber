@@ -12,53 +12,14 @@
   <div class='row py-5 justify-content-center'>
     <div class='col-sm-10 col-md-5 mx-3 mb-5'>
       <h6 class='border border-2 py-1 text-center'>人気投稿</h6>
-      <% @popular_posts.each do |post| %>
-      <div class='row mt-3 mb-2'>
-        <div class='col-2 border-bottom'>
-        <%= link_to new_user_session_path, class:'text-dark text-decoration-none' do %>
-          <%= image_tag post.user.get_profile_image, size:"50x50" %>
-        </div>
-        <div class='col-10 px-1 border-bottom'>
-          <%= post.user.name %>
-          <div class='my-1'>
-            <%= post.statement %>
-          </div>
-          <div class='d-flex justify-content-end pr-1'>
-            <p class='m-2'><i class="fas fa-heart text-danger"></i><%= post.favorites.count %></p>
-            <p class='m-2'><i class="far fa-comment-dots"></i><%= post.post_comments.count %></p>
-            <p class='m-2'><i class="fas fa-cube text-primary"></i>
-          </div>
-        <% end %>
-        </div>
-      </div>
-      <% end %>
+      <%= render 'public/homes/posts_list', posts: @popular_posts %>
     </div>
 
     <div class='col-sm-10 col-md-5 mx-3 mb-5'>
       <h6 class='border border-2 py-1 text-center'>新着投稿</h6>
-      <% @new_posts.reverse_each do |post| %>
-      <div class='row mt-3 mb-2'>
-        <div class='col-2 border-bottom'>
-        <%= link_to new_user_session_path, class:'text-dark text-decoration-none' do %>
-          <%= image_tag post.user.get_profile_image, size:"50x50" %>
-        </div>
-        <div class='col-10 px-1 border-bottom'>
-          <%= post.user.name %>
-          <div class='my-1'>
-            <%= post.statement %>
-          </div>
-          <div class='d-flex justify-content-end pr-1'>
-            <p class='m-2'><i class="fas fa-heart text-danger"></i><%= post.favorites.count %></p>
-            <p class='m-2'><i class="far fa-comment-dots"></i><%= post.post_comments.count %></p>
-            <p class='m-2'><i class="fas fa-cube text-primary"></i>
-          </div>
-        <% end %>
-        </div>
-      </div>
-      <% end %>
+      <%= render 'public/homes/posts_list', posts: @new_posts %>
     </div>
   </div>
-
 
   <div class='row justify-content-center contents_about test-box' id='about'>
     <div class='col-8'>
@@ -87,7 +48,7 @@
             ↓<br>
             Cuberに投稿してみる<br>
             <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class:'btn btn-secondary my-2' %><br>
-            ※ゲストログインでは1時間おきに投稿やコメントなどが全てリセットされます。
+            ※ゲストログインでは投稿やコメントなどが1時間おきに全てリセットされます。
           </td>
         </tr>
       </table>
@@ -105,13 +66,10 @@
             立体パズルの揃え方が<br>
             分からない…、<br>
             いいサイトないかな？<br>
-            
             新しい立体パズルを<br>
             買いたい…、<br>
             どれを買おうかな？<br>
-            
             ↓<br>
-            
             困ったときは…<br>
             <%= link_to "キーワード検索", top_searches_path, class:'btn btn-secondary my-2' %><br>
           </td>
@@ -131,12 +89,10 @@
             気軽にいいねしてみたり、<br>
             パズルを揃えたタイムを<br>
             記録してみたり、<br>
-            
             読み返したい投稿には<br>
-            ブックマークをつけて、<br>
+            ブックマークをつけて<br>
             自分だけの本棚を<br>
             作ってみたり。<br>
-            
             使い方はいろいろ。<br>
             <%= link_to "新規登録", new_user_registration_path, class:'btn btn-secondary my-2' %>
           </td>
@@ -176,7 +132,7 @@
   <div class='row justify-content-center'>
     <div class='text-center my-4'>
       <h6>Cuberを体験してみる<i class="fas fa-arrow-down"></i></h6>
-      <%= link_to "ゲストログイン", users_guest_sign_in_path, class:'btn btn-secondary my-2' %>
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class:'btn btn-secondary my-2' %>
     </div>
   </div>
 

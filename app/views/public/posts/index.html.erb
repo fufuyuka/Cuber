@@ -5,7 +5,7 @@
     
     <!--投稿-->
     <div class='col-8 offset-1'>
-      <!--新規投稿-->
+      <!--新規投稿フォーム-->
       <div class='row mt-2 mb-4'>
         <%= image_tag current_user.get_profile_image, size:'50x50', class:'m-3' %>
         <div>
@@ -16,9 +16,6 @@
           <div class='row'>
             <div class='col-8 text-left'>
               <%= f.text_field :category, placeholder:"タグをつける" %>
-            </div>
-            <div>
-              <%#= f.select :categoriy, PuzzleCategory.all.map { |puzzle_categoriy| [puzzle_categoriy.category, puzzle_categoriy.id] }, size:"50x20" %>
             </div>
             <div class='col-4 text-right'>
               <%= f.submit "投稿する", class:'btn btn-info' %>
@@ -32,7 +29,6 @@
       <div>
         <%= render 'public/posts/list', posts: @posts %>
       </div>
-      
     </div>
     
   </div>

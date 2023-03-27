@@ -37,7 +37,6 @@ devise_for :users, skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
-
   namespace :admin do
     get "/logout" => "homes#logout" #管理者のログアウト完了ページ
     root to: "contacts#index"
