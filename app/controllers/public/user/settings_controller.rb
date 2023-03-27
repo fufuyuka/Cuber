@@ -6,80 +6,32 @@ class Public::User::SettingsController < ApplicationController
     @user = current_user #フォームに既存データを渡すために
   end
 
-  def update
+  def update 
+    update = user_update_params
+    @user = current_user
     #現passwordの一致確認
-    if current_user.valid_password?(params[:user][:password])
-      #新パスワードの入力があるか
-      if params[:user][:new_password].present? && params[:user][:new_password_confirmation].present?
-        #確認用と一致しているか
-        if params[:user][:new_password] == params[:user][:new_password_confirmation]
-          current_user.password = params[:user][:new_password]
-          current_user.password_confirmation = params[:user][:new_password_confirmation]
-        else
-          
-          if current_user.email == params[:user][:email]
-            current_user.update(email: params[:user][:email])
-            flash[:notice] = "【注意！】新パスワード(確認用)が一致しません。"
-            @user = current_user
-            render :edit #renderなのでflash.clearされない
-            return
-          else
-            current_user.update(email: params[:user][:email])
-            flash[:notice] = "【注意！】新パスワード(確認用)が一致しません。メールアドレスのみ更新しました。"
-            @user = current_user
-            render :edit #renderなのでflash.clearされない
-            return
-          end
-        end
-        
-      elsif params[:user][:new_password].present? || params[:user][:new_password_confirmation].present?
-        if current_user.email != params[:user][:email]
-          current_user.update(email: params[:user][:email])
-          flash[:notice] = "【注意！】新パスワード(または確認用)の入力がありません。メールアドレスのみ更新しました。"
-          @user = current_user
-          render :edit #renderなのでflash.clearされない
-          return
-        else
-          flash[:notice] = "【注意！】新パスワード(または確認用)の入力がありません。"
-          @user = current_user
-          render :edit #renderなのでflash.clearされない
-          return
-        end
-      else
-        if current_user.email != params[:user][:email]
-          current_user.update(email: params[:user][:email])
-          flash[:notice] = "メールアドレスを更新しました。"
-          @user = current_user
-          render :edit 
-          return
-        else
-          flash[:notice] = "変更はありませんでした。"
-          @user = current_user
-          render :edit 
-          return
-        end
-      end
-      
-      if current_user.email == params[:user][:email] #新パスワードが6文字以下のときメッセージが合わない(パス変できてない)
-        current_user.update(email: params[:user][:email])
-        flash[:notice] = "パスワードを更新しました。ログインページへ移動します。"
-        @user = current_user
-        render :edit #renderなのでflash.clearされない
-      else
-        current_user.update(email: params[:user][:email])
-        flash[:notice] = "メールアドレスとパスワードを更新しました。ログインページへ移動します。"
-        @user = current_user
-        render :edit #renderなのでflash.clearされない
-      end
-      
-    else
-      flash[:notice] = "現在のパスワードが一致しません。"
-      @user = current_user
+    unless @user.valid_password?(update[:password]) && update[:email]&.include?('@') #&.で存在確認してからinclude
+      flash[:notice] = "現在のパスワードが一致しないか、有効なメールアドレスではありません。"
       render :edit
+      return
     end
-    
+    #新パスワードの入力があるか
+    unless update[:new_password].present? || update[:new_password_confirmation].present?
+      current_user.update(email: update[:email])
+      flash[:notice] = "メールアドレスを更新しました。"
+      render :edit 
+      return
+    end
+    #確認用と一致している&6文字以上
+    if match_password?(update[:new_password],update[:new_password_confirmation]) && update[:new_password].size > 6
+      flash[:notice] = "メールアドレスとパスワードを更新しました。ログインページへ移動します。"
+      @user.update(email: update[:email])
+    else
+      flash[:notice] = "【注意！】更新できませんでした。最初から入力してください。"
+    end
+    render :edit #renderなのでflash.clearされない
   end
-  
+
   def logout
   end
   
@@ -94,4 +46,16 @@ class Public::User::SettingsController < ApplicationController
   def user_params
     params.require(:user).permit(:email,:password)
   end
+  
+  def user_update_params
+    params.require(:user).permit(:email,:password,:new_password,:new_password_confirmation)
+  end
+  
+  def match_password?(password,password_confirmation)
+    if password == password_confirmation
+      @user.password = password
+      @user.password_confirmation = password_confirmation
+    end
+  end
+  
 end

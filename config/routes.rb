@@ -20,7 +20,6 @@ devise_for :users, skip: [:passwords], controllers: {
       patch "/withdrawal" => "settings#withdrawal"
       get "/withdrawal" => redirect("/") #退会直後のみ
       resource :settings, only: [:edit,:update]
-      get "/settings" => "settings#edit"
     end
     get "/:user_id/favorites" => "favorites#index", as: 'favorites'
     get "/bookmarks" => "bookmarks#index"
