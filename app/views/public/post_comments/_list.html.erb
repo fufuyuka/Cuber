@@ -13,7 +13,9 @@
   <% end %>
     </div>
     <div class='row ml-1 mb-2'>
+    <%= link_to post_path(comment.post), class:'text-dark text-decoration-none my-2' do %>
       <%= comment.comment %>
+    <% end %>
     </div>
     <div class='row d-flex justify-content-end pr-1'>
     <% if comment.user == current_user %>

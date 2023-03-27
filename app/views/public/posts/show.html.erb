@@ -26,31 +26,31 @@
           </div>
         
           <div class='row ml-3 mb-2'>
-        <%= link_to post_path(@post), class:'text-dark text-decoration-none' do %>
-          <%= @post.statement %>
-        <% end %>
-        </div>
-        
-        <!--いいね,コメント,ブックマーク,削除-->
-        <div class='d-flex justify-content-end'>
-          <p id="favorite_buttons_<%= @post.id %>" class='mx-3'>
-            <%= render "public/favorites/favorite_btn", post: @post %>
-          </p>
-          <p class='mx-3'>
-            <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
-          </p>
-          <p id="bookmark_buttons_<%= @post.id %>" class='mx-3'>
-            <%= render "public/bookmarks/bookmark_btn", post: @post %>
-          </p>
-          <p class='ml-3'>
-          <% if @post.user == current_user %>
-            <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-            <i class="fas fa-times text-dark"></i>
-            <% end %>
+          <%= link_to post_path(@post), class:'text-dark text-decoration-none' do %>
+            <%= @post.statement %>
           <% end %>
-          </p>
+          </div>
+        
+          <!--いいね,コメント,ブックマーク,削除-->
+          <div class='d-flex justify-content-end'>
+            <p id="favorite_buttons_<%= @post.id %>" class='mx-3'>
+              <%= render "public/favorites/favorite_btn", post: @post %>
+            </p>
+            <p class='mx-3'>
+              <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
+            </p>
+            <p id="bookmark_buttons_<%= @post.id %>" class='mx-3'>
+              <%= render "public/bookmarks/bookmark_btn", post: @post %>
+            </p>
+            <p class='ml-3'>
+            <% if @post.user == current_user %>
+              <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+              <i class="fas fa-times text-dark"></i>
+              <% end %>
+            <% end %>
+            </p>
+          </div>
         </div>
-      </div>
       </div>
 
       <!--コメント一覧-->

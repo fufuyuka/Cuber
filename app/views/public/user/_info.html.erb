@@ -12,6 +12,7 @@
         <%= Favorite.total_favorites(user) %>
       </div>
     </div>
+    
     <div class='mt-4'>
       <%= link_to "新着投稿", posts_path, class:'text-dark py-2' %>
     </div>
@@ -28,9 +29,9 @@
       <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %>
     </div>
     <div class='my-2'>
-    <% if user.email != "guest@example.com" %>
-      <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
-    <% end %>
+      <% if user.email != "guest@example.com" %>
+        <%= link_to "設定", edit_user_settings_path, class:'text-dark' %>
+      <% end %>
     </div>
 
   <% elsif user == current_user %>
@@ -45,6 +46,7 @@
         <%= Favorite.total_favorites(user) %>
       </div>
     </div>
+    
     <div class='mt-4'>
       <%= link_to "新着投稿", posts_path, class:'text-dark py-2' %>
     </div>
@@ -60,7 +62,9 @@
     <div class='my-2'>
       <%= link_to "ブックマーク", bookmarks_path, class:'text-dark' %>
     </div>
+    <div class='my-2'>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'btn btn-outline-secondary my-3' %>
+    </div>
 
   <% else %>
     <%= image_tag user.get_profile_image, size:'100x100' %>
@@ -74,6 +78,7 @@
         <%= Favorite.total_favorites(user) %>
       </div>
     </div>
+    
     <div class='mt-4'>
       <%= link_to "投稿", user_path(user), class:'text-dark' %>
     </div>
