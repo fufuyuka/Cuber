@@ -53,9 +53,5 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
   
-#存在しないページ用（エラー）
-  get '*not_found' => 'application#routing_error'
-  post '*not_found' => 'application#routing_error'
-  
   #get '*path', to: 'homes#top'
 end

@@ -1,67 +1,96 @@
+
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+  <head>
+    <title>Cuber</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="yiOTc9KSDHn4fEVu_8HX_M-w789_yF3G8hacrO8CKfsoMjfDPbh2RFzZKAfVZah6OThlF3sZ9T6SEE_-_Od9AQ" />
+    
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    <!--link = assets/, pack = javascript/ をそれぞれ参照する-->
+    <link rel="stylesheet" media="all" href="/assets/application-beed6e7adf5674a043c0e579831c27feb9d5104e59abc48ed6b5ed7d81756f51.css" data-turbolinks-track="reload" />
+    <!--bootstrapをyarn(js)でインストールしWebpackerで管理-->
+    <link rel="stylesheet" media="all" href="/packs/css/application-67be560e.css" data-turbolinks-track="reload" />
+    <script src="/packs/js/application-a3c5d58ce12f2226240d.js" data-turbolinks-track="reload"></script>
+  </head>
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+  <body>
+    <header class='sticky-top'>
+      <!--ユーザーがログインしているとき-->
+      <nav class='navbar navbar-expand-md navbar-light bg-light'>
+          <a class="navbar-brand nav-link" href="/">
+          <img src="/assets/Cuber_logo-491683446008c25e2ac0bf01be86e9b535724211ad0786248e35c98ed96f53ba.png" width="100" height="100" />
+</a>        <!-- ハンバーガーメニュー -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+          <div class='collapse navbar-collapse flex-column order-md-last align-items-end mr-5' id="navbarSupportedContent">
+            <!--検索フォーム-->
+            <div>
+            <form action="/top/searches" accept-charset="UTF-8" method="get">
+              <input placeholder="気になるワード" type="text" name="word" id="word" />
+            <input type="submit" name="commit" value="検索" data-disable-with="検索" />
+</form>            </div>
+            <!--ヘッダー見出し-->
+            <ul class='nav navbar-nav m-auto'>
+              <li class='nav-item'>
+                <a class="nav-link text-dark mx-3" href="/">TOP</a>
+              </li>
+              <li class='nav-item'>
+                <a class="nav-link text-dark mx-3" href="/#about">Cuberってなに？</a>
+              </li>
+              <li class='nav-item'>
+                <a class="nav-link text-dark mx-3" href="/#how">使い方</a>
+              </li>
+              <li class='nav-item'>
+                <a class="nav-link text-dark mx-3" href="/users/sign_up">新規登録</a>
+              </li>
+              <li class='nav-item'>
+                <a class="nav-link text-dark mx-3" href="/users/sign_in">ログイン</a>
+              </li>
+              <li class='nav-item'>
+                <a class="nav-link text-dark mx-3" rel="nofollow" data-method="post" href="/users/guest_sign_in">ゲストログイン</a>
+              </li>
+            </ul>
+          </div>
+      </nav>
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
-</head>
+    </header>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+    <main>
+      <div class='container my-5'>
+  <div class='row justify-content-center py-5'>
+    <div class='col-sm-10 col-md-5'>
+      <img class="img-fluid" src="/assets/404error-e758cc07672ae76e648630fe7191d9ee0b19cb9901e704ab1601502d51696b32.jpg" width="400" height="400" />
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <div class='col-sm-10 col-md-5 my-5'>
+      <h3>Error</h3>
+      <div class='row px-4'>
+        <p>お探しのページは見つかりませんでした。<br>
+          URLが間違っているか、ページが存在しません。</p>
+      </div>
+      <div class='row px-4'>
+        <p>The page you’re looking for can’t be found.<br>
+          Wrong URL, page does not exist.</p>
+      </div>
+      <div class='row pl-4'>
+        <a class="my-5" href="/">Cuber TOPページへ</a>
+      </div>
+    </div>
   </div>
-</body>
+</div>
+
+    </main>
+
+    <footer class='fixed-bottom'>
+      <div class='row bg-light py-sm-4 py-lg-5 justify-content-center'>
+        <p class='col-sm-3 col-lg-1 text-center'><a href="/contacts/new">お問い合わせ</a></p>
+        <p class='col-sm-3 col-lg-1 text-center'><a href="/terms">利用規約</a></p>
+        <p class='col-sm-3 col-lg-1 text-center'><a href="/management">運営</a></p>
+      </div>
+    </footer>
+    
+  </body>
 </html>
