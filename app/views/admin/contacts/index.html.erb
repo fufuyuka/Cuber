@@ -3,15 +3,15 @@
     <h4>お問い合わせ</h4>
   </div>
 
-  <div class='row justify-content-center table-responsive'>
+  <div class='row justify-content-center'>
     <%= paginate @contacts %>
-    <table class='table table-bordered'>
+    <table class='table table-bordered table-hover' style='table-layout:fixed;'>
       <thead class='table-secondary text-center'>
         <tr>
           <th class='col-1'>日付</th>
           <th class='col-2'>氏名</th>
           <th class='col-2'>メールアドレス</th>
-          <th class='col-5'>お問い合わせ内容</th>
+          <th class='col-4'>お問い合わせ内容</th>
           <th class='col-1'>対応状況</th>
           <th class='col-1'></th>
         </tr>
@@ -28,8 +28,10 @@
           <td class='text-center'>
             <%= contact.email %>
           </td>
-          <td>
-            <%= contact.contact_detail %>
+          <td style="word-wrap: break-word;" height="auto">
+            <div style="max-height:100px; overflow-y:auto;">
+              <%= contact.contact_detail %>
+            </div>
           </td>
           <td class='text-center'>
             <%= contact.supported_status_i18n %>
