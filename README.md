@@ -37,7 +37,10 @@ ER図
 アプリケーション詳細設計書  
 ![アプリケーション詳細設計書](https://user-images.githubusercontent.com/121597200/227995589-c2e28edd-b803-4a92-a77b-c5b12c5c6685.png)
 
-UIflows  
+UIflows
+![uiflows_user ](https://user-images.githubusercontent.com/121597200/228144953-7a403578-0069-4eff-9dbc-d6d1425ce4aa.jpg)
+![uiflows_admin](https://user-images.githubusercontent.com/121597200/228145033-cc76a45f-807d-4894-8435-2d41a674c38c.jpg)
+
 
 ## 開発環境
 - OS：Linux(CentOS)
