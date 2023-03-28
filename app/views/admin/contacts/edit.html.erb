@@ -5,7 +5,7 @@
   <%= form_with model: @contact, url: admin_contact_path, method: :patch, local:true do |f| %>
   <div class='row justify-content-center'>
     <div class='col-8'>
-      <table class='table table-bordered'>
+      <table class='table table-bordered table-hover' style='table-layout:fixed;'>
         <tr>
           <td class='col-3 table-secondary'>日付</td>
           <td><%= @contact.created_at.strftime('%Y/%m/%d') %></td>
@@ -20,11 +20,11 @@
         </tr>
         <tr>
           <td class='table-secondary'>お問い合わせ内容</td>
-          <td><%= @contact.contact_detail %></td>
+          <td style="word-wrap: break-word;"><%= @contact.contact_detail %></td>
         </tr>
         <tr>
           <td class='table-secondary'>メモ</td>
-          <td><%= f.text_area :memo, class:"form-control memo", size:'20x10' %></td>
+          <td><%= f.text_area :memo, class:'form-control memo', size:'20x10' %></td>
         </tr>
         <tr>
           <td class='table-secondary'>対応状況</td>

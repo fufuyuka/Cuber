@@ -56,4 +56,6 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 #存在しないページ用（エラー）
   get '*not_found' => 'application#routing_error'
   post '*not_found' => 'application#routing_error'
+  
+  #get '*path', to: 'homes#top'
 end

@@ -12,14 +12,14 @@
     
     <div class='col-8'>
       <div class='row mb-4'>
-        <table class='teble table-bordered col-10'>
+        <table class='table col-10 table-bordered table-hover' style='table-layout:fixed;'>
           <tr>
             <td class='col-3 py-2 table-secondary'>ユーザー名</td>
             <td class='col-6'><%= @user.name %></td>
           </tr>
           <tr>
             <td class='col-3 py-5 table-secondary'>プロフィール</td>
-            <td class='col-6'><%= @user.profiles %></td>
+            <td class='col-6' style="word-wrap: break-word;"><%= @user.profiles %></td>
           </tr>
           <tr>
             <td class='col-3 py-2 table-secondary'>総いいね数</td>
