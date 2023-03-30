@@ -30,15 +30,26 @@
 - 新しいパズルを買うのに情報収集をしたい時
 
 
+### 機能紹介
+- ユーザーのトータルいいね数
+> ユーザーが投稿した状態にある全ての投稿(＝削除されていない)につけられたいいねの総計。
+> 投稿をするほどいいねを貰えるチャンスが増えるため、投稿を促し交流を活発にさせる目的。
+![total-favorite](https://user-images.githubusercontent.com/121597200/228825352-52ab308e-ffac-4b95-8f87-fda2c367f63c.png)
+
+- ゲストユーザーの投稿などのリセット機能
+> ゲストユーザーとして設置しているアカウントが一つであるため、バッチ処理により投稿を一定時間(1時間おき)にリセットしている。
+> 管理者側の管理の負担軽減と、ゲストユーザー側での「前にゲストユーザーを使用した方の履歴がある不自然さ」の軽減を目的とする。
+> また、ゲストユーザーを利用した、いいね稼ぎなどの対策としても有用と考える。
+
 ## 設計書
-ER図  
+- [ER図](https://drive.google.com/file/d/1z-BwdRe7vRc_pM9dsblqKiSAT31nMtwn/view?usp=sharing)
 ![Cuber_ER図](https://user-images.githubusercontent.com/121597200/227995004-82888ff8-0a07-4b3b-8cfb-59a8389341a6.png)
 
-アプリケーション詳細設計書  
+- アプリケーション詳細設計書  
 ![アプリケーション詳細設計書](https://user-images.githubusercontent.com/121597200/227995589-c2e28edd-b803-4a92-a77b-c5b12c5c6685.png)
 
-UIflows
-![uiflows_user ](https://user-images.githubusercontent.com/121597200/228144953-7a403578-0069-4eff-9dbc-d6d1425ce4aa.jpg)
+- [UIflows](https://drive.google.com/file/d/113n_84lYIh_bFxHnJQaerfQDA98ju6s5/view?usp=sharing)
+![uiflows_user](https://user-images.githubusercontent.com/121597200/228144953-7a403578-0069-4eff-9dbc-d6d1425ce4aa.jpg)
 ![uiflows_admin](https://user-images.githubusercontent.com/121597200/228145033-cc76a45f-807d-4894-8435-2d41a674c38c.jpg)
 
 
