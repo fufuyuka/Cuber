@@ -31,7 +31,7 @@
 
 
 ## 設計書
-ER図  
+- [ER図](https://drive.google.com/file/d/1z-BwdRe7vRc_pM9dsblqKiSAT31nMtwn/view?usp=sharing)
 ![Cuber_ER図](https://user-images.githubusercontent.com/121597200/227995004-82888ff8-0a07-4b3b-8cfb-59a8389341a6.png)
 
 アプリケーション詳細設計書  
