@@ -7,7 +7,7 @@ class Public::HomesController < ApplicationController
   
   def search
     @word = params[:word]
-    @posts = Post.looks(params[:search], params[:word]).page(params[:page]) if @word.present?
+    @posts = Post.looks(params[:search], params[:word]).first(5) if @word.present?
   end
   
   def new
