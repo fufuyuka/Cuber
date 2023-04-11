@@ -10,6 +10,11 @@ ja:
         not_supported: "未対応"
         support_now: "対応中"
         finish_suppport: "対応済み"
+    post:
+      status:
+        active: "有効"
+        deletion: "削除"
+        ban: "管理者削除"
   views:
     pagination:
       first: "&laquo; New"

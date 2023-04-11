@@ -7,7 +7,8 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   
   validates :statement, presence: true, length: { in: 1..140 }
-
+  
+  enum status: { active: 0, deletion: 1, ban: 2 }
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

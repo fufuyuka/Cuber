@@ -8,7 +8,7 @@ class Admin::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
+    @post.update(user_status: "ban") #ステータス変更
     redirect_to request.referer
   end
 end
