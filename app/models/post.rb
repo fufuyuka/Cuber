@@ -4,10 +4,11 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
   has_many :bookmarks, dependent: :destroy
-  has_many :post_comments, dependent: :destroy
+  has_many :post_comments
   
   validates :statement, presence: true, length: { in: 1..140 }
-
+  
+  enum status: { active: 0, deletion: 1, ban: 2 }
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
