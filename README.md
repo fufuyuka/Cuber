@@ -45,7 +45,7 @@
 
 <details><summary>ER図</summary>
 
-![Cuber_ER図](https://user-images.githubusercontent.com/121597200/227995004-82888ff8-0a07-4b3b-8cfb-59a8389341a6.png)
+![Cuber_ER図](https://user-images.githubusercontent.com/121597200/231178958-b6a844ab-4d43-4767-96d1-6a02955dbbef.png)
 [Diagrams.net](https://drive.google.com/file/d/1z-BwdRe7vRc_pM9dsblqKiSAT31nMtwn/view?usp=sharing)  
 </details>
 
