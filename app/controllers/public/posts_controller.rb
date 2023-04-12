@@ -25,12 +25,12 @@ class Public::PostsController < ApplicationController
 
   def index
     @new_post = Post.new
-    @posts = Post.order(created_at: :desc).page(params[:page])
+    @posts = Post.where(status: 0).order(created_at: :desc).page(params[:page])
   end
   
   def destroy
     @post = Post.find(params[:id])
-    @post.update(user_status: "deletion") #ステータス変更
+    @post.update(status: "deletion") #ステータス変更
     redirect_to posts_path
   end
   

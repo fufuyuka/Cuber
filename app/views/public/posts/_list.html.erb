@@ -13,7 +13,7 @@
       </div>
       <div class='col-6 text-right'>
       <% if post.puzzle_category_id.present? %>
-        <%= link_to searches_path(word: post.puzzle_category.category, range: 'タグ', search: "perfect_matc") do %>
+        <%= link_to searches_path(word: post.puzzle_category.category, range: 'タグ', search: "perfect_match") do %>
           <%= post.puzzle_category.category %>
         <% end %>
       <% end %>
