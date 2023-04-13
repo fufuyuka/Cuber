@@ -13,40 +13,107 @@
     <div class='col-8'>
       <!--投稿リスト-->
       <% @posts.each do |post| %>
-      <div class='row my-3'>
-        <div class='col-1 border-bottom'>
-          <%= image_tag post.user.get_profile_image, size:"50x50" %>
-        </div>  
-        <div class='col-8 border-bottom'>
-          <div class='row m-auto'>
-            <div class='col-6 text-left'>
-              <%= post.user.name %>
-            </div>
-            <div class='col-6 text-right'>
-            <% if post.puzzle_category_id.present? %>
-              <%= post.puzzle_category.category %>
-            <% end %>
-            </div>
-          </div>
-          <div class='row ml-3 mb-2'>
-            <%= post.statement %>
-          </div>
-          <!--いいね,コメント,ブックマーク,削除-->
-          <div class='row d-flex justify-content-end'>
-            <p class='mx-3'>
-              <i class="fas fa-heart text-danger"></i><%= post.favorites.count %>
-            </p>
-            <p class='mx-3'>
-              <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
-            </p>
-            <p class='ml-3'>
-              <%= link_to admin_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-                <i class="fas fa-times text-dark"></i>
+        <% if post.status == "active" %>
+        <div class='row my-3'>
+          <div class='col-1 border-bottom'>
+            <%= image_tag post.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8 border-bottom'>
+            <div class='row m-auto'>
+              <div class='col-6 text-left'>
+                <%= post.user.name %>
+              </div>
+              <div class='col-6 text-right'>
+              <% if post.puzzle_category_id.present? %>
+                <%= post.puzzle_category.category %>
               <% end %>
-            </p>
+              </div>
+            </div>
+            <div class='row ml-3 mb-2'>
+              <%= post.statement %>
+            </div>
+            <!--いいね,コメント,ブックマーク,削除-->
+            <div class='row d-flex justify-content-end'>
+              <p class='mx-3'>
+                <i class="fas fa-heart text-danger"></i><%= post.favorites.count %>
+              </p>
+              <p class='mx-3'>
+                <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
+              </p>
+              <p class='ml-3'>
+                <%= link_to admin_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+                  <i class="fas fa-times text-dark"></i>
+                <% end %>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+        <% elsif post.status == "ban" %>
+        <div class='row my-3'>
+          <div class='col-1 border-bottom'>
+            <%= image_tag post.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8 border-bottom'>
+            <div class='row m-auto'>
+              <div class='col-6 text-left'>
+                <%= post.user.name %>
+              </div>
+              <div class='col-6 text-right'>
+              <% if post.puzzle_category_id.present? %>
+                <%= post.puzzle_category.category %>
+              <% end %>
+              </div>
+            </div>
+            <div class='row ml-3 mb-2 text-secondary flex-column'>
+              <p class='my-1 text-danger'>管理者により削除済み</p>
+              <%= post.statement %>
+            </div>
+            <!--いいね,コメント,ブックマーク,削除-->
+            <div class='row d-flex justify-content-end'>
+              <p class='mx-3'>
+                <i class="fas fa-heart"></i><%= post.favorites.count %>
+              </p>
+              <p class='mx-3'>
+                <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
+              </p>
+              <p class='ml-3'>
+                <%= link_to "再表示", admin_post_path(post), method: :patch, data: { confirm: '投稿を再表示してよろしいですか？' } %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <div class='row my-3'>
+          <div class='col-1 border-bottom'>
+            <%= image_tag post.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8 border-bottom'>
+            <div class='row m-auto'>
+              <div class='col-6 text-left'>
+                <%= post.user.name %>
+              </div>
+              <div class='col-6 text-right'>
+              <% if post.puzzle_category_id.present? %>
+                <%= post.puzzle_category.category %>
+              <% end %>
+              </div>
+            </div>
+            <div class='row ml-3 mb-2 text-secondary flex-column'>
+              <p class='my-1 text-info'>ユーザーにより削除済み</p>
+              <%= post.statement %>
+            </div>
+            <!--いいね,コメント,ブックマーク,削除-->
+            <div class='row d-flex justify-content-end'>
+              <p class='mx-3'>
+                <i class="fas fa-heart"></i><%= post.favorites.count %>
+              </p>
+              <p class='ml-3'>
+                <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <% end %>
       <% end %>
       <%= paginate @posts %>
     </div>

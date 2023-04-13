@@ -48,7 +48,7 @@
     </div>
     
     <div class='mt-4'>
-      <%= link_to "新着投稿", posts_path, class:'text-dark py-2' %>
+      <%= link_to "新着投稿", posts_path, class:'text-dark' %>
     </div>
     <div class='my-2'>
       <%= link_to "マイページ", user_path(current_user), class:'text-dark' %>
@@ -79,6 +79,9 @@
       </div>
     </div>
     
+    <div class='mt-4'>
+      <%= link_to "新着投稿", posts_path, class:'text-dark' %>
+    </div>
     <div class='mt-4'>
       <%= link_to "投稿", user_path(user), class:'text-dark' %>
     </div>

@@ -11,7 +11,76 @@
       <%= render 'public/user/profiles/ditail', user: @user %>
     
       <!--user投稿一覧-->
-      <%= render 'public/posts/list', posts: @posts %>
+      <% @posts.each do |post| %>
+        <% if post.status == "active" %>
+        <div class='row my-3'>
+          <div class='col-1 border-bottom'>
+          <%= link_to user_path(post.user) do %>
+            <%= image_tag post.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8 border-bottom'>
+            <div class='row m-auto'>
+              <div class='col-6 text-left'>
+              <%= post.user.name %>
+          <% end %>
+              </div>
+              <div class='col-6 text-right'>
+              <% if post.puzzle_category_id.present? %>
+                <%= link_to searches_path(word: post.puzzle_category.category, range: 'タグ', search: "perfect_match") do %>
+                  <%= post.puzzle_category.category %>
+                <% end %>
+              <% end %>
+              </div>
+            </div>
+        
+            <div class='row ml-3 mb-2'>
+            <%= link_to post_path(post), class:'text-dark text-decoration-none' do %>
+              <%= post.statement %>
+            <% end %>
+            </div>
+            
+            <!--いいね,コメント,ブックマーク,削除-->
+            <div class='row d-flex justify-content-end'>
+              <p id="favorite_buttons_<%= post.id %>" class='mx-3'>
+                <%= render "public/favorites/favorite_btn", post: post %>
+              </p>
+              <p class='mx-3'>
+                <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
+              </p>
+              <p id="bookmark_buttons_<%= post.id %>" class='mx-3'>
+                <%= render "public/bookmarks/bookmark_btn", post: post %>
+              </p>
+              <p class='ml-3'>
+              <% if post.user == current_user %>
+                <%= link_to post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+                  <i class="fas fa-times text-dark"></i>
+                <% end %>
+              <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <% elsif post.status == "ban" && post.user == current_user %>
+        <div class='row my-3'>
+          <div class='col-1 border-bottom'>
+            <%= image_tag post.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8 border-bottom'>
+            <div class='row m-auto'>
+              <div class='col-6 text-left'>
+              <%= post.user.name %>
+              </div>
+            </div>
+            <div class='row ml-3 mb-2'>
+              <p class='my-1 text-secondary'>こちらの投稿は不適切と判断されたため削除されました。</p>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <% end %>
+      <% end %>
+      <%= paginate @posts %>
     </div>
     
   </div>

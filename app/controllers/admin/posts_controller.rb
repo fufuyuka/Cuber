@@ -11,4 +11,10 @@ class Admin::PostsController < ApplicationController
     @post.update(status: "ban") #ステータス変更
     redirect_to request.referer
   end
+  
+  def update
+    @post = Post.find(params[:id])
+    @post.update(status: "active") #ステータス変更
+    redirect_to request.referer
+  end
 end
