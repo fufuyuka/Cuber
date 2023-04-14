@@ -8,7 +8,14 @@ class Admin::PostCommentsController < ApplicationController
   
   def destroy
     @comment = PostComment.find(params[:id])
-    @comment.destroy
+    @comment.update(status: "ban") #ステータス変更
+    redirect_to request.referer
+  end
+  
+  #再表示
+  def update
+    @comment = PostComment.find(params[:id])
+    @comment.update(status: "active") #ステータス変更
     redirect_to request.referer
   end
 end

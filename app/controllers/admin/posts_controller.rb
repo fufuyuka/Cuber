@@ -12,6 +12,7 @@ class Admin::PostsController < ApplicationController
     redirect_to request.referer
   end
   
+  #再表示
   def update
     @post = Post.find(params[:id])
     @post.update(status: "active") #ステータス変更

@@ -13,24 +13,59 @@
     <div class='col-8'>
       <!--コメント一覧-->
       <% @comments.each do |comment| %>
-      <div class='row my-3'>
-        <div class='col-1 border-bottom'>
-          <%= image_tag comment.user.get_profile_image, size:"50x50" %>
-        </div>  
-        <div class='col-8 border-bottom'>
-          <div class='row m-auto'>
-            <%= comment.user.name %>
-          </div>
-          <div class='row ml-1 mb-2'>
-            <%= comment.comment %>
-          </div>
-          <div class='row d-flex justify-content-end pr-1'>
-            <%= link_to admin_post_comment_path(comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
-              <p><i class="fas fa-times text-dark"></i></p>
-            <% end %>
+        <% if comment.status == "active" %>
+        <div class='row my-3'>
+          <div class='col-1 border-bottom'>
+            <%= image_tag comment.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8 border-bottom'>
+            <div class='row m-auto'>
+              <%= comment.user.name %>
+            </div>
+            <div class='row ml-1 mb-2'>
+              <%= comment.comment %>
+            </div>
+            <div class='row d-flex justify-content-end pr-1'>
+              <%= link_to admin_post_comment_path(comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
+                <p><i class="fas fa-times text-dark"></i></p>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
+        <% elsif comment.status == "ban" %>
+        <div class='row my-3'>
+          <div class='col-1 border-bottom'>
+            <%= image_tag comment.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8 border-bottom'>
+            <div class='row m-auto'>
+              <%= comment.user.name %>
+            </div>
+            <div class='row ml-1 mb-2 text-secondary flex-column'>
+              <p class='my-1 text-danger'>管理者により削除済み</p>
+              <%= comment.comment %>
+            </div>
+            <div class='row d-flex justify-content-end pr-1'>
+              <%= link_to "再表示", admin_post_comment_path(comment), method: :patch, data: { confirm: '投稿を再表示してよろしいですか？' } %>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <div class='row my-3'>
+          <div class='col-1 border-bottom'>
+            <%= image_tag comment.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8 border-bottom'>
+            <div class='row m-auto'>
+              <%= comment.user.name %>
+            </div>
+            <div class='row ml-1 mb-2 text-secondary flex-column'>
+              <p class='my-1 text-info'>ユーザーにより削除済み</p>
+              <%= comment.comment %>
+            </div>
+          </div>
+        </div>
+        <% end %>
       <% end %>
       <%= paginate @comments %>
     </div>

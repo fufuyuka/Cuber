@@ -18,7 +18,6 @@ class Post < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
 
-
   #投稿検索
   def self.looks(search,word)
     if search == "perfect_match"
@@ -27,5 +26,4 @@ class Post < ApplicationRecord
       @posts = Post.where(status: "active").where("statement LIKE?","%#{word}%").order(created_at: :desc)
     end
   end
-
 end
