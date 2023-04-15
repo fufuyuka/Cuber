@@ -1,10 +1,9 @@
 # Cuber
+![What_is_Cuber](https://user-images.githubusercontent.com/121597200/227776873-74909341-f6f6-4644-ade4-ee5b2e44761d.png)
 
 ## サイト概要
 ### サイトテーマ
 立体パズルについて自由に投稿し、交流や情報収集ができるコミュニティサイト
-
-![What_is_Cuber](https://user-images.githubusercontent.com/121597200/227776873-74909341-f6f6-4644-ade4-ee5b2e44761d.png)
 
 ### テーマを選んだ理由
 もともと立体パズルの1つであるスピードキューブが趣味で、解いたりコレクションしたりしています。

@@ -15,8 +15,8 @@ class Public::PostCommentsController < ApplicationController
   
   def destroy
     @comment = PostComment.find(params[:id])
-    @comment.destroy
-    redirect_to request.referer
+    @comment.update(status: "deletion") #ステータス変更
+    redirect_to posts_path
   end
   
   private

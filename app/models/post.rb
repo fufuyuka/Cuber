@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
   has_many :bookmarks, dependent: :destroy
-  has_many :post_comments, dependent: :destroy
+  has_many :post_comments
   
   validates :statement, presence: true, length: { in: 1..140 }
   
@@ -18,14 +18,12 @@ class Post < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
 
-
   #投稿検索
   def self.looks(search,word)
     if search == "perfect_match"
-      @posts = Post.where(statement: word).order(created_at: :desc)
+      @posts = Post.where(status: "active").where(statement: word).order(created_at: :desc)
     else
-      @posts = Post.where("statement LIKE?","%#{word}%").order(created_at: :desc)
+      @posts = Post.where(status: "active").where("statement LIKE?","%#{word}%").order(created_at: :desc)
     end
   end
-
 end

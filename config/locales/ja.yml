@@ -15,6 +15,11 @@ ja:
         active: "有効"
         deletion: "削除"
         ban: "管理者削除"
+    post_comment:
+      status:
+        active: "有効"
+        deletion: "削除"
+        ban: "管理者削除"
   views:
     pagination:
       first: "&laquo; New"
