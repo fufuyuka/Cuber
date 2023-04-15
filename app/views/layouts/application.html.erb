@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <!--ファビコン(タブアイコン)-->
+    <%= favicon_link_tag 'favicon.ico' %>
     <!--link = assets/, pack = javascript/ をそれぞれ参照する-->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!--bootstrapをyarn(js)でインストールしWebpackerで管理-->
