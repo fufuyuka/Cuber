@@ -61,6 +61,12 @@
 [Diagrams.net](https://drive.google.com/file/d/113n_84lYIh_bFxHnJQaerfQDA98ju6s5/view?usp=sharing)  
 </details>
 
+<details><summary>インフラ設計書</summary>
+
+![インフラ設計書](https://user-images.githubusercontent.com/121597200/232313557-6d5f2870-97ab-4979-9e2a-71bea07e698b.png)
+[インフラ設計書](https://docs.google.com/spreadsheets/d/1nD6CrJj8BADdx2fL4XIstfU810YUDhSuSplPJDv7z4g/edit?usp=sharing)  
+</details>
+
 
 ## 開発環境
 - OS：Linux(CentOS)
