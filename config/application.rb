@@ -16,6 +16,9 @@ module Cuber
     
     #バッチ処理
     config.paths.add 'lib', eager_load: true
+    
+    #タイムゾーンの変更
+    config.time_zone = 'Tokyo'
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -3,69 +3,77 @@
     <!--user-info-->
     <%= render 'public/user/info', user: current_user %>
     
-    <div class='col-8 offset-1 py-5'>
+    <div class='col-8 offset-1'>
       <!--投稿詳細-->
-      <div class='row my-3'>
-        
+      <div class='my-5'>
       <% if @post.status != "active" %>
-        <div class='col-1'>
-        <%= link_to user_path(@post.user.id) do %>
-          <%= image_tag @post.user.get_profile_image, size:"50x50" %>
-        </div>
-        <div class='col-8'>
-          <div class='col text-left'>
-          <%= @post.user.name %>
-        <% end %>
+        <div class='row my-3'>
+          <div class='col-1'>
+          <%= link_to user_path(@post.user.id) do %>
+            <%= image_tag @post.user.get_profile_image, size:"50x50" %>
           </div>
-          <div>
-            <p class='p-4'>この投稿は削除されました。</p>
-          </div>
-        </div>
-
-      <% else %>
-        <div class='col-1'>
-        <%= link_to user_path(@post.user.id) do %>
-          <%= image_tag @post.user.get_profile_image, size:"50x50" %>
-        </div>
-        <div class='col-8'>
-          <div class='row m-auto'>
-            <div class='col-6 text-left'>
+          <div class='col-8'>
+            <div class='col text-left'>
             <%= @post.user.name %>
-        <% end %>
-            </div>
-            <div class='col-6 text-right'>
-            <% if @post.puzzle_category_id.present? %>
-              <%= link_to searches_path(word: @post.puzzle_category.category, range: 'タグ', search: "perfect_match") do %>
-                <%= @post.puzzle_category.category %>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
-        
-          <div class='row ml-3 mb-2'>
-          <%= link_to post_path(@post), class:'text-dark text-decoration-none' do %>
-            <%= @post.statement %>
           <% end %>
+            </div>
+            <div>
+              <p class='p-4'>この投稿は削除されました。</p>
+            </div>
           </div>
-        
-          <!--いいね,コメント,ブックマーク,削除-->
-          <div class='d-flex justify-content-end'>
-            <p id="favorite_buttons_<%= @post.id %>" class='mx-3'>
-              <%= render "public/favorites/favorite_btn", post: @post %>
-            </p>
-            <p class='mx-3'>
-              <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
-            </p>
-            <p id="bookmark_buttons_<%= @post.id %>" class='mx-3'>
-              <%= render "public/bookmarks/bookmark_btn", post: @post %>
-            </p>
-            <p class='ml-3'>
-            <% if @post.user == current_user %>
-              <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-              <i class="fas fa-times text-dark"></i>
+        </div>
+      <% else %>
+        <div class='row my-3'>
+          <div class='col-1'>
+          <%= link_to user_path(@post.user) do %>
+            <%= image_tag @post.user.get_profile_image, size:"50x50" %>
+          </div>  
+          <div class='col-8'>
+            <div class='row m-auto'>
+              <div class='col-6 text-left'>
+              <%= @post.user.name %>
+          <% end %>
+              </div>
+              <div class='col-6 text-right'>
+              <% if @post.puzzle_category_id.present? %>
+                <%= link_to searches_path(word: @post.puzzle_category.category, range: 'タグ', search: "perfect_match") do %>
+                  <%= @post.puzzle_category.category %>
+                <% end %>
               <% end %>
+              </div>
+            </div>
+        
+            <div class='row ml-3 m-2'>
+            <%= link_to post_path(@post), class:'text-dark text-decoration-none' do %>
+              <%= @post.statement %>
             <% end %>
-            </p>
+            </div>
+            
+            <!--日付、いいね,コメント,ブックマーク,削除-->
+            <div class='row m-auto'>
+              <div class='col-6 text-left text-secondary'>
+               <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
+              </div>
+              <div class='col-6 d-flex justify-content-end'>
+               <p id="favorite_buttons_<%= @post.id %>" class='mx-3'>
+                    <%= render "public/favorites/favorite_btn", post: @post %>
+                  </p>
+                  <p class='mx-3'>
+                    <i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
+                  </p>
+                  <p id="bookmark_buttons_<%= @post.id %>" class='mx-3'>
+                    <%= render "public/bookmarks/bookmark_btn", post: @post %>
+                  </p>
+                  <p class='ml-3'>
+                  <% if @post.user == current_user %>
+                    <%= link_to post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+                      <i class="fas fa-times text-dark"></i>
+                    <% end %>
+                  <% end %>
+                  </p>
+              </div>
+            </div>
+            
           </div>
         </div>
       <% end %>

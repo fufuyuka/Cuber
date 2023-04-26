@@ -27,7 +27,7 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 # set :environment, rails_env # 実行環境の指定
 
 # 本番環境用
-set :environment, :production# 実行環境の指定
+set :environment, :production # 実行環境の指定
 
 # cronのログ
 set :output, 'log/cron.log'

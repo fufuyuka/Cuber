@@ -4,7 +4,7 @@
     <%= render 'public/user/info', user: current_user %>
     
     <!--user設定-->
-    <div class='col-8 offset-1 py-5'>
+    <div class='col-6 offset-1 py-5'>
       <div class='my-5'>
         <h4>設定</h4>
         <%= flash[:notice] %>
@@ -21,6 +21,7 @@
             </tr>
             <tr>
               <td><strong>パスワード変更(変更したい場合のみ入力)</strong></td>
+              
             </tr>
             <tr>
               <td><%= f.label :新パスワード %></td>

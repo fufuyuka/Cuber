@@ -8,8 +8,8 @@ class Public::BookmarksController < ApplicationController
   end
   
   def index
-    bookmarks = Bookmark.where(user_id: current_user.id).order(created_at: :desc).pluck(:post_id)
-    @bookmarked_posts = Post.where(id: bookmarks).page(params[:page])
+    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:post_id)
+    @bookmarked_posts = Post.where(id: bookmarks, status: 0).order(created_at: :desc).page(params[:page])
   end
   
   def destroy

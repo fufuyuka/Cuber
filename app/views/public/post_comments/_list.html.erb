@@ -21,7 +21,7 @@
       <div class='row d-flex justify-content-end pr-1'>
       <% if comment.user == current_user %>
         <%= link_to post_post_comment_path(comment.post, comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } do %>
-          <p><i class="fas fa-times text-dark"></i></p>
+          <i class="fas fa-times text-dark"></i>
         <% end %>
       <% end %>
       </div>
