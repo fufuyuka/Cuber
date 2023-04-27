@@ -9,8 +9,11 @@ class Public::FavoritesController < ApplicationController
   
   def index
     @user = User.find(params[:user_id])
-    favorites = Favorite.where(user_id: @user).order(created_at: :desc).pluck(:post_id)
-    @favorited_posts = Post.where(id: favorites, status: 0).page(params[:page])
+    @favorited_posts = Post.eager_load(:favorites) # eager_loadで@favorited_postsにfavoritesをjoinする
+                       .where(favorites: { user: @user }) # joinしたfavoritesをwhere(@userのidを持つ)で絞り込み
+                       .where(status: 0) #さらにステータスがactiveのみに絞り込み
+                       .order('favorites.created_at desc') #favoriteのcreated_atでソート
+                       .page(params[:page])
   end
   
   def destroy
