@@ -8,8 +8,12 @@ class Public::BookmarksController < ApplicationController
   end
   
   def index
-    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:post_id)
-    @bookmarked_posts = Post.where(id: bookmarks, status: 0).order(created_at: :desc).page(params[:page])
+    @bookmarked_posts = Post.eager_load(:bookmarks) # eager_loadで@bookmarked_postsにbookmarksをjoinする
+                       .where(bookmarks: { user: current_user }) # joinしたbookmarksをwhere(current_userのidを持つ)で絞り込み
+                       .where(status: 0) #さらにステータスがactiveのみに絞り込み
+                       .order('bookmarks.created_at desc') #bookmarkのcreated_atでソート
+                       .page(params[:page])
+    
   end
   
   def destroy
