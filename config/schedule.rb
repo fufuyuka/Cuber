@@ -31,7 +31,7 @@ set :environment, :production # 実行環境の指定
 
 # cronのログ
 set :output, 'log/cron.log'
-#1時間に一度メゾッドが実行される
+#1時間に一度メソッドが実行される
 every 1.hour do
   begin
     runner "Batch::DataReset.data_reset"
