@@ -6,8 +6,8 @@
     <!--投稿-->
     <div class='col-8 offset-1'>
       <!--新規投稿フォーム-->
-      <div class='row ml-2'>
-      <%= flash[:notice] %>
+      <div class='row'>
+        <%= render "public/shared/error_messages", resource: @new_post %>
       </div>
       <div class='row mt-2 mb-4'>
         <%= image_tag current_user.get_profile_image, size:'50x50', class:'m-3' %>
@@ -26,7 +26,6 @@
             <% end %>
           </div>
         </div>
-      </div>
 
       <!--タイムライン-->
       <div>

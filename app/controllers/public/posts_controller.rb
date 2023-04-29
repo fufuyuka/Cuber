@@ -17,7 +17,6 @@ class Public::PostsController < ApplicationController
     # 保存に失敗したら
     unless @new_post.save
       @posts = Post.order(created_at: :desc).page(params[:page])
-      flash[:notice] = "文字数を確認してください"
       render 'index'
       return
     end
