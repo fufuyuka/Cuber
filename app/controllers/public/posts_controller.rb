@@ -11,7 +11,7 @@ class Public::PostsController < ApplicationController
     @new_post = Post.new(post_params)
     #find_or_create_by=存在すれば使うなければ作る(or_create)
     @new_post.user_id = current_user.id
-    if params[:post][:category].present? && @new_post.valid?
+    if params[:post][:category].present? && @new_post.valid? # .valid?は@new_postのバリデーションに問題がないときtureを返す
       @new_post.puzzle_category = PuzzleCategory.find_or_create_by(category: params[:post][:category])
     end
     # 保存に失敗したら
