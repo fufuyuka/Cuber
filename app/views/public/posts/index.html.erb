@@ -18,7 +18,7 @@
           </div>
           <div class='row'>
             <div class='col-6 text-left'>
-              <%= f.text_field :category, class:"form-control", placeholder:"タグをつける" %>
+              <%= f.text_field :category, maxlength:"20", class:"form-control", placeholder:"タグをつける(20文字以内)" %>
             </div>
             <div class='col-6 text-right'>
               <%= f.submit "投稿する", class:'btn btn-info' %>
