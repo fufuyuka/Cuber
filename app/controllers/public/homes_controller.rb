@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
   
   def top
-    @popular_posts = Post.where(status: "active").includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}.first(5)
+    @popular_posts = Post.left_joins(:favorites).where(status: "active").group(:id).order("count(favorites.post_id) desc").first(5)
     @new_posts = Post.where(status: "active").order(created_at: :desc).first(5)
   end
   
