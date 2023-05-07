@@ -3,6 +3,10 @@
     <h2>お問い合わせ</h2>
   </div>
   <div class='row justify-content-center'>
+    <%= render "public/shared/error_messages", resource: @contact %>
+  </div>
+  
+  <div class='row justify-content-center'>
   <%= form_with model: @contact, url: contacts_create_path, local:true do |f| %>
     <div class="form-group">
       <%= f.text_field :name, placeholder:"名前(必須)", class:"form-control name" %>
