@@ -56,6 +56,12 @@ ja:
         updated_at: 更新日
       post:
         statement: 投稿
+      post_comment:
+        comment: コメント
+      contact:
+        name: 名前
+        email: メールアドレス
+        contact_detail: お問い合わせ内容
     models:
       user: ユーザー
   devise:

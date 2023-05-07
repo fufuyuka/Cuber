@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
     end
     # 保存に失敗したら
     unless @new_post.save
-      @posts = Post.order(created_at: :desc).page(params[:page])
+      @posts = Post.where(status: 0).order(created_at: :desc).page(params[:page])
       render 'index'
       return
     end
