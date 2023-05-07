@@ -85,6 +85,9 @@
       </div>
 
       <!--新規コメント-->
+      <div class='row'>
+        <%= render "public/shared/error_messages", resource: @new_comment %>
+      </div>
       <% if @post.status == "active" %>
         <div class='row my-3'>
         <%= form_with model: [@post,@new_comment], local:true do |f| %>

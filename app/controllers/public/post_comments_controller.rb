@@ -9,8 +9,15 @@ class Public::PostCommentsController < ApplicationController
   def create
     @new_comment = PostComment.new(post_comment_params)
     @new_comment.user_id = current_user.id
-    @new_comment.save
-    redirect_to request.referer
+    # @new_comment.save
+    # redirect_to request.referer
+    unless @new_comment.save
+      @post = @new_comment.post
+      @comments = @post.post_comments.page(params[:page])
+      render template: "public/posts/show"
+      return
+    end
+    redirect_to post_path(@new_comment.post)
   end
   
   def destroy
