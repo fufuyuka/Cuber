@@ -41,8 +41,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get "/management" => "homes#management"
     root to: "contacts#index"
     resources :contacts, only: [:edit, :update]
-    get "/:user_id/posts" => "posts#index", as: 'posts'
-    resources :posts, only: [:destroy, :update]
+    get "/:user_id/posts" => "posts#list", as: 'user_posts'
+    resources :posts, only: [:index, :destroy, :update]
     get "/:user_id/post_comments" => "post_comments#index", as: 'post_comments'
     resources :post_comments, only: [:destroy, :update]
     resources :users, only: [:index, :show, :edit, :update] 

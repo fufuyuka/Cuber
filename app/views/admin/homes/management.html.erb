@@ -1,9 +1,11 @@
-<div>
-  <%= link_to "ユーザー一覧", admin_users_path, class:'nav-link text-dark mx-3' %>
-</div>
-<div>
-  <%= link_to "投稿", admin_searches_path, class:'nav-link text-dark mx-3' %>
-</div>
-<div>
-  <%= link_to "タグ", admin_searches_path, class:'nav-link text-dark mx-3' %>
+<div class='container p-2'>
+  <div class='row justify-content-center mt-5'>
+    <%= link_to "ユーザー一覧", admin_users_path, class:'nav-link text-dark mx-3' %>
+  </div>
+  <div class='row justify-content-center my-3'>
+    <%= link_to "投稿", admin_posts_path, class:'nav-link text-dark mx-3' %>
+  </div>
+  <div class='row justify-content-center my-3'>
+    <%= link_to "タグ", admin_searches_path, class:'nav-link text-dark mx-3' %>
+  </div>
 </div>

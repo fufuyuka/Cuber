@@ -2,6 +2,10 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
+    @posts = Post.all.order(created_at: :desc).page(params[:page])
+  end
+  
+  def list
     @user = User.find(params[:user_id])
     @posts = Post.where(user_id: @user.id).order(created_at: :desc).page(params[:page])
   end
